@@ -1,0 +1,290 @@
+<app-header-slider></app-header-slider>
+<!--========================= Free Govt Login =========================-->
+<ng-container *ngIf="this.searchType === 'freeGovt' && this.loginType === 'jobApply'">
+    <h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+    <h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+    <div class="skip-login mt-25">
+        <div class="steps pr-0">
+            <span>STEP  {{this.currentStep}}/{{this.maxStep}}</span>
+            <h2>Signup <small>or</small> Login</h2>
+        </div>
+
+        <ng-container *ngIf="this.searchType === 'freeGovt'">
+            <a href="javascript:void(0)" class="btn-orange" [routerLink]="['/review-edit']">Skip Login</a>
+        </ng-container>
+    </div>
+
+    <div class="progressbar">
+        <div class="progress-value width{{this.progress}}"></div>
+    </div>
+    <div class="form-section mt-25">
+        <div class="px-15">
+            <form [formGroup]="loginform" [ngClass]="{'capHide': isUserVerify}">
+                <div class="input-group">
+                    <label for="email1">Email ID</label>
+                    <input type="email" id="email1" (keyup)="keyPress($event)" formControlName="email">
+                    <div *ngIf="getControls['email'].invalid">
+                        <div *ngIf="(getControls['email']['errors']?.['required'] && getControls['email']['touched']) || isInvalid" class="alert alert-danger">
+                            Valid email is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="password1">Password</label>
+                    <div class="eye-icon">
+                        <input type="password" id="password1" formControlName="password" minlength="8" #passwordField>
+                        <button class="cursor-pointer" (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'">
+                            <span><img alt="" src="{{config.assetsImages+'eye-slash.svg'}}" *ngIf="passwordField.type === 'password'"></span>
+                            <span><img alt="" src="{{config.assetsImages+'eye.svg'}}" *ngIf="passwordField.type === 'text'"></span>
+                        </button>
+                        <ng-container *ngIf="!this.resgisterCheck">
+                            <div *ngIf="getControls['password'].invalid">
+                                <div *ngIf="(getControls['password']['errors']?.['required'] && getControls['password']['touched']) || isInvalid" class="alert alert-danger">
+                                    Password is required.
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="this.resgisterCheck">
+                            <div *ngIf="getControls['password'].invalid">
+                                <div *ngIf="(getControls['password']['errors']?.['pattern'] && getControls['password']['touched']) || isInvalid" class="alert alert-danger">
+                                    Password is required and must be more than 8 characters long and should contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character.
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="check-group text-center mb-30">
+                    <a [routerLink]="['/forgot-login/'+this.loginType]" class="forget mr-10">Forgot Login</a>
+                    <a [routerLink]="['/forgot-password/'+this.loginType]" class="forget ml-10">Forgot Password?</a>
+                </div>
+
+                <ng-container *ngIf="config.isShowCaptcha">
+                    <div class="captcha-btn">
+                        <div class="form-recaptcha-size-new">
+                            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                            <div *ngIf="getControls['recaptcha'].invalid">
+                                <div *ngIf="(getControls['recaptcha']['errors']?.['required'] && getControls['recaptcha']['touched']) || isInvalid" class="alert alert-danger">
+                                    Captcha is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </form>
+            <div class="continue">
+                <span class="line"></span>
+                <span class="text">or Continue with</span>
+            </div>
+            <ul class="auth-login">
+                <!-- <li><a href=""><img src="{{config.assetsImages+'logos_google-icon.svg'}}" alt=""></a></li>
+                <li><a href=""><img src="{{config.assetsImages+'ic_baseline-apple.svg'}}" alt=""></a></li> -->
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="22px" height="22px"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="22px" height="22px"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" height="22px"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24px" height="24px"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="button-group button-cover">
+            <ng-container *ngIf="!resgisterCheck">
+                <button type="submit" class="btnpurple" (click)="submitLogin()" [ngClass]="{'disabled': this.isLoader}" [disabled]="this.isLoader"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">Login</span> </button>
+            </ng-container>
+            <ng-container *ngIf="!loginCheck">
+                <button type="submit" class="btnpurple" (click)="submitLogin()" [ngClass]="{'disabled': this.isLoader}" [disabled]="this.isLoader"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">Register</span> </button>
+            </ng-container>
+        </div>
+    </div>
+
+</ng-container>
+
+
+<!--========================= JobRep Login =========================-->
+<ng-container *ngIf="this.searchType !=='freeGovt' || this.searchType ==='freeGovt' && this.loginType === 'jobReps'">
+    <div class="jobreps-banner">
+        <h2 class="section-common-heading text-center text-white">CAREER PROFESSIONALS</h2>
+        <h3 class="section-sub-common-heading text-center text-white">Expertise Registration</h3>
+        <div class="steps mt-25">
+            <span>STEP 1/3</span>
+            <!--            <h2>Signup <small>or</small> Login</h2>-->
+            <h2>Profile Update</h2>
+        </div>
+        <div class="progressbar">
+            <div class="progress-value" [ngClass]="{'width33': this.loginType === 'jobReps'}"></div>
+        </div>
+    </div>
+    <div class="form-section jobreps-form pb-0">
+        <div class="cardheading">
+            Signup <span>or</span> Login
+        </div>
+        <div class="px-15">
+            <form [formGroup]="loginform" [ngClass]="{'capHide': isUserVerify}">
+<!--                <div class="input-group" *ngIf="resgisterCheck">-->
+<!--                    <label for="email">Full Name</label>-->
+<!--                    <input type="email" id="fullname" formControlName="fullname">-->
+<!--                    <div *ngIf="getControls['fullname'].invalid">-->
+<!--                        <div *ngIf="(getControls['fullname']['errors']?.['required'] && getControls['fullname']['touched']) || isInvalid" class="alert alert-danger">-->
+<!--                            Full name is required.-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="input-group">
+                    <label for="email">Email ID</label>
+                    <input type="email" id="email" (keyup)="keyPress($event)" formControlName="email">
+                    <div *ngIf="getControls['email'].invalid">
+                        <div *ngIf="(getControls['email']['errors']?.['required'] && getControls['email']['touched']) || isInvalid" class="alert alert-danger">
+                            Valid email is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="eye-icon">
+                        <input type="password" id="password" formControlName="password" minlength="8" #passwordField>
+                        <button class="btn-eye cursor-pointer" (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'">
+                            <span><img alt="" src="{{config.assetsImages+'eye-slash.svg'}}" *ngIf="passwordField.type === 'password'"></span>
+                            <span><img alt="" src="{{config.assetsImages+'eye.svg'}}" *ngIf="passwordField.type === 'text'"></span>
+                        </button>
+                        <ng-container *ngIf="!this.resgisterCheck">
+                            <div *ngIf="getControls['password'].invalid">
+                                <div *ngIf="(getControls['password']['errors']?.['required'] && getControls['password']['touched']) || isInvalid" class="alert alert-danger">
+                                    Password is required.
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="this.resgisterCheck">
+                            <div *ngIf="getControls['password'].invalid">
+                                <div *ngIf="(getControls['password']['errors']?.['pattern'] && getControls['password']['touched']) || isInvalid" class="alert alert-danger">
+                                    Password is required and must be more than 8 characters long and should contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character.
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="check-group text-center mb-30">
+                    <a [routerLink]="['/forgot-login/'+this.loginType]" class="forget mr-10">Forgot Login</a>
+                    <a [routerLink]="['/forgot-password/'+this.loginType]" class="forget ml-10">Forgot Password?</a>
+                </div>
+
+                <ng-container *ngIf="config.isShowCaptcha">
+                    <div class="captcha-btn">
+                        <div class="form-recaptcha-size-new">
+                            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                            <div *ngIf="getControls['recaptcha'].invalid">
+                                <div *ngIf="(getControls['recaptcha']['errors']?.['required'] && getControls['recaptcha']['touched']) || isInvalid" class="alert alert-danger">
+                                    Captcha is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!resgisterCheck">
+                    <button type="submit" class="button-purple mt-25 w-100" (click)="submitLogin()" [ngClass]="{'disabled': this.isLoader}" [disabled]="this.isLoader"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">{{this.actionButton}}</span> </button>
+                </ng-container>
+                <ng-container *ngIf="!loginCheck && resgisterCheck">
+                    <button type="submit" class="button-purple mt-25 w-100" (click)="submitLogin()" [ngClass]="{'disabled': this.isLoader}" [disabled]="this.isLoader"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">{{this.actionButton}}</span> </button>
+                </ng-container>
+            </form>
+            <div class="continue mt-25">
+                <span class="line"></span>
+                <span class="text">or Continue with</span>
+            </div>
+            <ul class="auth-login mb-20">
+                <!-- <li><a href=""><img src="{{config.assetsImages+'logos_google-icon.svg'}}" alt=""></a></li>
+                <li><a href=""><img src="{{config.assetsImages+'ic_baseline-apple.svg'}}" alt=""></a></li> -->
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="22px" height="22px"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="22px" height="22px"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" height="22px"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24px" height="24px"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="update-pro-banner mt-30">
+        <h4>Career Advancement Services</h4>
+        <!--        <button class="button-skyblue" type="submit">Continue</button>-->
+    </div>
+    <div class="content-wrap">
+        <!--        <h2 class="section-heading-underline text-center mb-30 px-15">Career Advancement Services</h2>-->
+        <div class="common-card">
+            <h4>Expertise</h4>
+            <ul class="services-lists">
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Career Transition</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Certification Assessment</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Cover Letter Preparation</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Education Coaching</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Employer Evaluation</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Executive Coaching</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Interview Coaching</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Job Match Strategy</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Job Tech Strategy</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Leadership Coaching</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Network Coaching</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Personal Branding</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Personality  Assessment</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Profession Assessment</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Resume Development</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Salary Negotiation</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Skills Assessment</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Training Assessment</li>
+            </ul>
+        </div>
+    </div>
+    <div class="px-15 mb-30 mt-30">
+        <h2 class="section-heading-underline text-center">Career Coach & Job Search Strategist</h2>
+        <p class="common-para">Helping professionals to identify their career goals and develop an effective resume.</p>
+    </div>
+    <ul class="career-professional-lists">
+        <ng-container *ngIf="imageData && imageData.length > 0">
+            <ng-container *ngFor="let data of imageData">
+                <li>
+                    <figure><img alt="" src="{{data.image}}" width="100%"></figure>
+                    <div class="ml-15">
+                        <h3>{{data.name}}</h3>
+                        <p>{{data.title}}</p>
+                        <p [innerHTML]="data.details"></p>
+                        <h6>Speciality:</h6>
+                        <label>{{data.top3_specialites}}</label>
+                    </div>
+                </li>
+            </ng-container>
+        </ng-container>
+        <div class="loading-bar" *ngIf="this.isUserDataLoader">
+            <span class="loader loader-quart"></span>
+            <span class="loading-text">Please Wait...</span>
+        </div>
+    </ul>
+    <app-footer-curate-career></app-footer-curate-career>
+    <figure><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>
+</ng-container>

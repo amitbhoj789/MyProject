@@ -1,0 +1,40 @@
+@mixin flex($justify-content,$align-items){
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+@mixin section-common-heading{
+    font-weight: 600;
+    font-size: 22px;
+    color: #1D184C;
+    margin: 0 0 3px;
+}
+@mixin section-sub-common-heading{
+    font-weight: 400;
+    color: #515151;
+    position: relative;
+    font-size: 13px;
+}
+@mixin common-heading{
+    font-weight: 600;
+    font-size: 16px;
+    color: #1D184C;
+    margin: 0 0 8px;
+}
+@mixin section-heading-underline{
+    font-weight: 600;
+    font-size: 20px;
+    color: #1E194D;
+    margin: 0 0 20px;
+    position: relative;
+}
+@mixin black-sm-heading{
+    font-weight: 600;
+    color: #000;
+    font-size: 14px;
+}
+@mixin block-heading{
+    color: #000000;
+    font-weight: 600;
+    font-size: 19px;
+}

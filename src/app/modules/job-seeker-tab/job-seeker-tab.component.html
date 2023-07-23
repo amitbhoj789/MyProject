@@ -1,0 +1,34 @@
+<h4 class="mb-30">Select Match Type</h4>
+<ul class="matching-list">
+    <li class="bar-light-pink" (click)="setSearchType('free')">
+        <label><img alt="interactive_demo" src="{{config.assetsImages+'interactive-demo.png'}}">  Both Match - Interactive Demo</label>
+        <span class="badge free">Free Match</span>
+        <small>Match</small>
+    </li>
+    <li class="bar-pink" (click)="setSearchType('freeGovt')">
+        <label><img alt="top_gov_jobs_match" src="{{config.assetsImages+'jobs-match.png'}}"> Top Government Jobs Match</label>
+        <span class="badge free">Free Match</span>
+    </li>
+    <li class="bar-pink" (click)="setSearchType('careerProfessionalMatch')">
+        <label><img alt="career_personal_match" src="{{config.assetsImages+'professional-match.png'}}"> Career Professional Match</label>
+        <span class="badge free">Free Match</span>
+    </li>
+    <li  class="bar-purple disable" (click)="setSearchType('paid')">
+        <label><img alt="top_usa_private_sector" src="{{config.assetsImages+'private-sector.png'}}"> Top USA Private Sector Match</label>
+        <span class="badge comming-soon">Coming Soon</span>
+    </li>
+    <li  class="bar-purple disable" (click)="setSearchType('companyMatch')">
+        <label><img alt="indvidual_usa_company_match" src="{{config.assetsImages+'usa-company.png'}}"> Individual USA Company Match</label>
+        <span class="badge comming-soon">Coming Soon</span>
+    </li>
+    <li  class="bar-purple">
+        <label><img alt="curate_promote_job_listing" src="{{config.assetsImages+'curate-promote.png'}}"> Curate + Promote job Listing </label>
+        <span class="badge comming-soon">Coming Soon</span>
+        <small>Recruit</small>
+    </li>
+    <li  class="bar-pink" (click)="setSearchType('jobRepCommunity')">
+        <label><img alt="jobRep_community" src="{{config.assetsImages+'jobre-community.png'}}"> JobRep Community </label>
+        <span class="badge signup-here">Sign Up Here</span>
+        <small>Network</small>
+    </li>
+</ul>

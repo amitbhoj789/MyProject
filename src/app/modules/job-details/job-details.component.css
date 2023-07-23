@@ -1,0 +1,73 @@
+.vacancy-detail {
+  position: relative;
+  padding-left: 50px;
+}
+.vacancy-detail .vacancy-count {
+  background-color: #CBFC50;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  color: #1D184C;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  border: 2px solid #9B9B9B;
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+  line-height: 22px;
+}
+
+.numbered-circle-box {
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  left: 0;
+  background-color: #F0F8FF;
+  padding: 10px 15px;
+}
+.numbered-circle-box .numbered-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.numbered-circle-box .numbered-circle li {
+  width: 10%;
+}
+.numbered-circle-box .numbered-circle li span {
+  background-color: #34A853;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+  line-height: 22px;
+}
+.numbered-circle-box .numbered-circle li.active-number span {
+  background-color: #CBFC50;
+  color: #1D184C;
+  border: 2px solid #9B9B9B;
+}
+.numbered-circle-box .numbered-circle + p {
+  font-weight: 500;
+  font-size: 18px;
+  color: #4B4A4D;
+  text-align: center;
+}
+
+@media print {
+  .print-download {
+    display: none;
+  }
+}/*# sourceMappingURL=job-details.component.css.map */

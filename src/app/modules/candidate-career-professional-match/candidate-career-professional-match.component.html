@@ -1,0 +1,51 @@
+<app-header-slider></app-header-slider>
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<!-- <h1 class="heading">Both Match</h1> -->
+<div class="steps mt-25">
+    <span>STEP {{this.currentStep}}/{{this.maxStep}}</span>
+    <!-- <h2>Candidate and Professional Matched</h2> -->
+    <h2>Top Career Professional Specialization</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value" style="width: 40%"></div>
+</div>
+<div class="form-section">
+    <div class="content-wrap pt-0">
+        <p class="mb-15 drag-para">Click to add/remove required service </p>
+        <div class="common-card">
+            <h4>Professional Services</h4>
+            <!-- <div class="drag-container drag-container--destination" [ngClass]="optionSelected!==1? 'drag-container--disabled': null">
+                <div cdkDropList id="includeList" [cdkDropListData]="specializationList"  [cdkDropListEnterPredicate]="allowDrop"
+                        [cdkDropListConnectedTo]="['optionsList']" class="services-lists item-list" (cdkDropListDropped)="drop($event)">
+                    <div class="item-box item-box--include" [ngClass]="optionSelected===2? 'item-box--disabled': null" *ngFor="let item of specializationList" cdkDrag> {{item.name}}</div>
+                </div>
+            </div> -->
+            <div class="professional-services-block">
+                <div class="selected-specialization-card">
+                    <h5>Select Top <span>Three</span> Specialization</h5>
+                    <ul class="selected-specialization-lists">
+                        <ng-container *ngFor="let selectedSpecializationList of selectedSpecializationLists; let i = index">
+                            <li (click)="removeSelectedItem(selectedSpecializationLists, i, selectedSpecializationList)"> {{selectedSpecializationList.name}} </li>
+                        </ng-container>
+                    </ul>
+                </div>
+                <div class="options-specialization-card">
+                    <ul class="options-specialization-lists">
+                        <ng-container *ngFor="let optionalSpecializationList of optionalSpecializationLists; let i = index">
+                            <li (click)="removeOptionalItem(optionalSpecializationLists, i, optionalSpecializationList)"> {{optionalSpecializationList.name}} </li>
+                        </ng-container>
+                    </ul>
+                </div>
+                <div (click)="this.maxThreeItemPopup=false" class="specialization-alert-box" *ngIf="this.maxThreeItemPopup">
+                    <img src="{{config.assetsImages+'alert.png'}}">
+                    <p>{{this.maxThreeItemPopupText}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-group">
+        <button type="submit" class="btnblue" [routerLink]="['/career-professional-match']">Previous</button>
+        <button type="submit" class="btnpurple" (click)="submitForm()">Next</button>
+    </div>
+</div>

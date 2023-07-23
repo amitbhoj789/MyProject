@@ -1,0 +1,30 @@
+.button-group button.btnblue, .button-group button.btnpurple {
+    cursor: pointer;
+}
+
+.progressbar .progress-value.width60 {
+    width: 60%;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+
+.keywords-table-block .keywords-table-header label:first-child span {
+    margin-left: 20px;
+}
+
+.keywords-table-block .keywords-table-header label:first-child , .keywords-table-block .keyword-table-lists li p:first-child{
+    width: 56%;
+}
+.keywords-table-block .keywords-table-header label:nth-child(2) , .keywords-table-block .keyword-table-lists li p:nth-child(2){
+    width: 22%;
+}
+.keywords-table-block .keywords-table-header label:last-child , .keywords-table-block .keyword-table-lists li p:last-child{
+    width: 22%;
+}
+
+.keywords-table-block .keyword-table-lists li p{
+    font-size: 16px;
+}

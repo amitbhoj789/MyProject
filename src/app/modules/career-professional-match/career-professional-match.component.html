@@ -1,0 +1,49 @@
+<app-header-slider></app-header-slider>
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<!-- <h1 class="heading">Both Match</h1> -->
+<div class="steps mt-25">
+    <span>STEP {{this.currentStep}}/{{this.maxStep}}</span>
+    <h2>Career Professional Match</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value width{{this.progress}}"></div>
+</div>
+<div class="form-section mt-0">
+    <div class="content-wrap text-center pt-25">
+        <h4 class="common-heading">Jobseekers Matched With Career Professionals</h4>
+        <p>When jobseekers need to improve their resume before they use the Both Match<sup>TM</sup> portal or need help with additional career advancement services, they now have a better opportunity to find the right curated career professionals (JobReps).</p>
+        <p class="mt-10 mb-10">Both Match<sup>TM</sup> helps connect the jobseeker and their ideal curated career professional to help advance employement opportunities and fit.</p>
+        <img alt="" src="{{config.assetsImages+'careers-job.png'}}" width="100%">
+    </div>
+    <div class="button-group">
+        <button type="submit" class="btnblue"  [routerLink]="['/']">Previous</button>
+        <button type="submit" class="btnpurple" [routerLink]="['/candidate-career-professional-match']">Next</button>
+    </div>
+
+    <ul class="career-professional-lists">
+        <ng-container *ngIf="imageData && imageData.length > 0">
+            <ng-container *ngFor="let data of imageData">
+                <li>
+                    <figure><img alt="" src="{{data.image}}" width="100%"></figure>
+                    <div class="ml-15">
+                        <h3>{{data.name}}</h3>
+                        <h4>{{data.title}}</h4>
+                        <p [innerHTML]="data.details"></p>
+                        <!--                        <p>Andrea Gerson is a top-ranked resume-->
+                        <!--                            writer with over 12 years of-->
+                        <!--                            <label class="d-none" #readMoreContent_1>experience helping professionals find clarity, confidence, and a renewed sense of energy around their work.</label>-->
+                        <!--                            <span (click)="readMoreContent_1.className === 'd-inline' ? readMoreContent_1.className = 'd-none' : readMoreContent_1.className = 'd-inline'" *ngIf="readMoreContent_1.className">{{readMoreContent_1.className === 'd-inline' ?  'Read Less' : 'Read More'}}</span>-->
+                        <!--                        </p>-->
+                        <h6>Speciality:</h6>
+                        <label>{{data.top3_specialites}}</label>
+                    </div>
+                </li>
+            </ng-container>
+        </ng-container>
+
+        <li *ngIf="this.isLoader">
+            <div class="loading-bar" ><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div>
+        </li>
+    </ul>
+</div>

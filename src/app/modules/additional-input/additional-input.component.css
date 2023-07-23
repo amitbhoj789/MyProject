@@ -1,0 +1,33 @@
+.icon-input {
+  padding-left: 45px !important;
+}
+
+.captcha-btn {
+  position: relative;
+}
+
+.progressbar .progress-value.width60 {
+  width: 60%;
+}
+
+.progressbar .progress-value.width67 {
+  width: 67%;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input > input,
+.ng-select .ng-select-container .ng-value-container .ng-input > input {
+  display: none !important;
+}
+
+.alert.alert-danger {
+  margin-top: 10px;
+}
+
+.read-only {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+:host ::ng-deep .industry_list.ng-select .ng-clear-wrapper {
+  display: none;
+}/*# sourceMappingURL=additional-input.component.css.map */

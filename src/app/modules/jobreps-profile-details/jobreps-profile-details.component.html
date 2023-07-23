@@ -1,0 +1,39 @@
+<app-header-slider></app-header-slider>
+<div class="content-wrap  pb-40 mt-10">
+    <div class="specialist-profile-edit">
+        <figure>
+            <img alt="profile" [src]="imageUrl" width="100%">
+        </figure>
+        <div class="ml-15">
+            <h3>{{this.name}}</h3>
+            <label class="mb-5">{{this.email}}</label>
+            <span>{{this.phone}}</span>
+        </div>
+        <a href="javascript:void(0)" [routerLink]="['/profile-update']" class="edit-profile">Edit</a>
+    </div>
+    <h5 class="black-sm-heading mt-20 mb-5">More about {{this.name}}</h5>
+    <p>{{this.profile_header}}</p>
+
+    <!-- <h5 class="black-sm-heading mt-20 mb-5">Certifications</h5>
+    <p>{{this.certifications}}</p> -->
+
+    <h5 class="black-sm-heading mt-20 mb-5">Service Summary</h5>
+    <p>{{this.service_summary}}</p>
+
+    <h5 class="black-sm-heading mt-20 mb-10">Top Services</h5>
+    <ng-container *ngFor="let item of this.specialties">
+        <p class="mb-5 top-service"><img alt="" src="{{config.assetsImages+'green-tick.svg'}}">{{item.service_name}}</p>
+    </ng-container>
+
+    <h5 class="black-sm-heading mt-20 mb-5">Industry Experience</h5>
+    <p>{{this.industry_experience}}</p>
+
+    <h5 class="black-sm-heading mt-20 mb-5">Address</h5>
+    <p>{{this.address}}</p>
+</div>
+<div class="button-group">
+    <button type="submit" class="btnblue" [routerLink]="['/jobreps-expertise']">Previous</button>
+    <button type="submit" class="btnpurple" [routerLink]="['/']">Home</button>
+</div>
+<app-footer-curate-career></app-footer-curate-career>
+<figure class="footer-figure"><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>

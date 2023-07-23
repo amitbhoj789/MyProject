@@ -1,0 +1,33 @@
+.button-group button.btnblue, .upload-btn, .upload-btn input[type=file] {
+  cursor: pointer;
+}
+
+.btn-reset {
+  all: unset;
+  cursor: pointer;
+}
+
+.img-uploading {
+  height: 162px;
+}
+
+.progressbar .progress-value.width20 {
+  width: 20%;
+}
+
+.progressbar .progress-value.width17 {
+  width: 17%;
+}
+
+.resume .resume-box p.or {
+  margin: 0 0 10px;
+  max-width: 100%;
+}
+
+.resume .resume-box p.extension {
+  margin: 10px auto 0;
+}
+
+.government-resume.resume .resume-box {
+  padding: 26px 0 15px;
+}/*# sourceMappingURL=upload-resume.component.css.map */

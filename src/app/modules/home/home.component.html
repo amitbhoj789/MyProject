@@ -1,0 +1,139 @@
+<app-header-slider></app-header-slider>
+<div class="blue-bg-content">
+    <owl-carousel-o [options]="customOptions">
+        <div *ngFor="let slide of slides" class="slide">
+            <ng-template carouselSlide>
+                <img alt="" src="{{ slide.img }}"  width="100%">
+            </ng-template>
+        </div>
+    </owl-carousel-o>
+<!--    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">-->
+<!--        <div ngxSlickItem *ngFor="let slide of slides" class="slide">-->
+<!--            <img src="{{ slide.img }}"  width="100%">-->
+<!--        </div>-->
+<!--    </ngx-slick-carousel>-->
+
+    <owl-carousel-o #owlCar [options]="customOptions" (changed)="changeOptions($event)">
+        <ng-container *ngFor="let slide of slides; let i = index">
+            <ng-template carouselSlide id="{{i}}">
+                <ng-container *ngIf="!slide.url">
+                    <img alt="{{i}}" src="{{ slide.img }}"  width="100%">
+                </ng-container>
+
+                <ng-container *ngIf="slide.url">
+                    <img [routerLink]="['/step-job-journey']"  alt="{{i}}" src="{{ slide.img }}"  width="100%">
+                </ng-container>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+
+    <button [hidden]="true" id="sliderStop" (click)="owlCar.stopAutoplay()"></button>
+<!--    <a class="btn btn-success" (click)="owlCar.to('2')">move to 3th slide</a><br>-->
+</div>
+
+<div class="mt-25">
+    <img src="{{config.assetsImages+'Jobseeker-Message.png'}}" width="100%">
+</div>
+<!-- <div class="Jobseeker-Message-block">
+    <p>
+        Instantly upload your updated resume, select your skills,
+        add your personal preferences and then use the top ten
+        curated <img  src="{{config.assetsImages+'bothmatch-logo.png'}}"> listing to network and apply to your
+        preferred organically matched jobs and employers. <br/> <br/>
+
+        A curated deeper organic job and employer match - saves
+        time and money, reduces stress and significantly increases
+        the chance of jobseekers enhancing their career journey.
+    </p>
+</div> -->
+<h2 class="section-common-heading pt-30 text-center">{{this.federalJobHeading}}</h2>
+<h3 id="start_here" class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<div class="start-here text-center mt-30 mb-15">START HERE</div>
+
+<ul class="tab-lists">
+    <li [ngClass]="{'active': jobTabIndex === 0}" (click)="jobTabChange(0)"><span>Job Seeker</span></li>
+    <li [ngClass]="{'active': jobTabIndex === 1}" (click)="jobTabChange(1)"><span>Register JobRep</span></li>
+    <li [ngClass]="{'active': jobTabIndex === 2}" (click)="jobTabChange(2)"><span>Network</span></li>
+</ul>
+<div class="tab-content px-10 mb-0 pb-0">
+    <div class="jobseeker-content" *ngIf="jobSeekerTab">
+        <app-job-seeker-tab></app-job-seeker-tab>
+    </div>
+    <div class="jobRep-content text-center" *ngIf="registerJobRepTab">
+        <h4>Jobseekers + Career Professionals Matched</h4>
+        <p class="mb-20">Both Match<span class="trade-mark">TM</span> helps connect the jobseeker and their ideal curated career professional to help advance employment opportunities and career fit.
+
+            <br/><br/> When jobseekers need to improve their resume before they use the Both Match<span class="trade-mark">TM</span> portal or need help with additional career advancement services, they now have a better opportunity to find the right curated career professionals (JobReps).</p>
+        <img  src="{{config.assetsImages+'jobrep.png'}}" width="100%" class="mb-20">
+        <a href="javascript:void(0)" [routerLink]="['/login','jobReps']" class="navigate-skyblue">Know More <img alt="" src="{{config.assetsImages+'right-arrow.svg'}}"></a>
+    </div>
+    <div class="metwork-content text-center" *ngIf="networkTab">
+        <h4>JobRep Network + Community</h4>
+        <h5  class="mt-15">What is the JobRep ?</h5>
+        <p>JobRep is a new human resource identity to standardize multiple candidate support professional specialties under a shared title to increase candidate outreach and highlight professional expertise. The goal is to use the <strong>JobRep identity to broadly represent the candidate</strong> in the same way the recruiter title represents the employer.</p>
+        <h5 class="mt-30">What is the JobRep Network ?</h5>
+        <p class="mb-30">The <a target="_blank" href="https://jobrep.com/">JobRep Network</a> brings together Graduates, Jobseekers, Candidates, JobReps and Recruiters to the community to facilitate collaboration, help jobseekers find jobs and help professionals achieve their talent objectives - all in one place !
+        </p>
+        <a target="_blank" href="https://jobrep.com/">
+            <img alt="" src="{{config.assetsImages+'jobrep-community.png'}}" width="100%">
+        </a>
+    </div>
+</div>
+<div class="current-match-banner mb-20 mt-25">
+    <img alt="" src="{{config.assetsImages+this.infoTabTopImage}}" width="100%">
+    <!-- <img src="images/Blue2.png" width="100%">
+    <img src="images/Blue3.png" width="100%"> -->
+</div>
+
+<ul class="tab-lists">
+    <li [ngClass]="{'active': infoTabIndex === 0}" (click)="infoTabChange(0)"><span>Why Both Match</span></li>
+    <li [ngClass]="{'active': infoTabIndex === 1}" (click)="infoTabChange(1)"><span>Challenges</span></li>
+    <li [ngClass]="{'active': infoTabIndex === 2}" (click)="infoTabChange(2)" class="current-match"><span>Our Solutions</span></li>
+</ul>
+<div class="tab-content  mb-0">
+    <div class="whybothmatch-content text-center knowmore-tabs" *ngIf="whyBothTabContent">
+        <div class="tab-fixed-height">
+            <h3 class="mb-20">A New Organic Job Journey</h3>
+            <p class="mb-15">The Curate Match Framework<sup>TM</sup> incorporates human insights and DeepMatchr<sup>TM</sup>&nbsp;<a [routerLink]="['/bothmatch-solutions']" style="color:#4285F4;">solutions</a> to find a <b> Both Way Match<sup>TM</sup></b> to help Jobseekers, JobReps and Employers.
+                <br/><br/> The DeepMatchr<sup>TM</sup> system does not process personal information in job matching and incorporates additional <a style="color:#4285F4;"  [routerLink]="['/useful-links','search-vs-match']" [queryParams]="{ artificialIntelligence: true }">artificial intelligence</a> best practices, thus eliminating the potential for matching bias.</p>
+            <!-- <div class="h-15px"></div> -->
+        </div>
+        <a [routerLink]="['/our-mission']" class="navigate-skyblue">Know More <img alt="" src="{{config.assetsImages+'right-arrow.svg'}}"></a>
+    </div>
+    <div class="challenges-content knowmore-tabs" *ngIf="challengesTabContent">
+        <div class="tab-fixed-height">
+            <h4>Partial list of Current Recruiting Industry Challenges</h4>
+            <ul class="partial-list mb-25">
+                <li><img alt="" src="{{config.assetsImages+'red-cross.svg'}}"> Too many mismatched jobseekers and jobs</li>
+                <li><img alt="" src="{{config.assetsImages+'red-cross.svg'}}"> Unveriﬁable and missing data in resumes</li>
+                <li><img alt="" src="{{config.assetsImages+'red-cross.svg'}}"> Stuffing keywords in resume to bypass the ATS</li>
+                <li><img alt="" src="{{config.assetsImages+'red-cross.svg'}}"> Misleading, duplicate or closed jobs posted</li>
+                <li><img alt="" src="{{config.assetsImages+'red-cross.svg'}}"> Ignored by some jobseekers and recruiters</li>
+                <li><img alt="" src="{{config.assetsImages+'red-cross.svg'}}"> Implicit bias in talent acquisition and hiring</li>
+                <li><img alt="" src="{{config.assetsImages+'red-cross.svg'}}"> ATS setup missing some qualiﬁed jobseekers</li>
+            </ul>
+            <!-- <div class="h-15px"></div> -->
+        </div>
+        <a href="javascript:void(0)" [routerLink]="['/current-challenges']" class="navigate-skyblue">Know More <img alt="" src="{{config.assetsImages+'right-arrow.svg'}}"></a>
+    </div>
+    <div class="solution-content knowmore-tabs" *ngIf="ourSolutionTabContent">
+        <div class="tab-fixed-height">
+            <h4><b>Both Match</b> Solutions to address Current Challenges...</h4>
+            <p>By researching the root causes of talent
+                challenges, Both Match<sup>TM</sup> is introducing a new
+                organic, open, collaborative, on-demand and
+                identity protected talent framework. Some
+                key highlights:</p>
+            <ul class="partial-list mb-25 mt-15">
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Curate Match Framework<sup>TM</sup></li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Both Way Match<sup>TM</sup></li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Jobseekers</li>
+                <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Open Access</li>
+    <!--            <li><img alt="" src="{{config.assetsImages+'green-tick.svg'}}"> Identity Protected Matching</li>-->
+            </ul>
+        </div>
+        <a [routerLink]="['/bothmatch-solutions']" class="navigate-skyblue">Know More <img alt="" src="{{config.assetsImages+'right-arrow.svg'}}"></a>
+    </div>
+</div>
+<app-footer-curate-career></app-footer-curate-career>
+<figure><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>

@@ -1,0 +1,128 @@
+::ng-deep{
+    ul.ngx-pagination {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        li{
+            border: 1px solid #AFAFAF;
+            border-right: 0;
+            margin-right: 0;
+            //padding: 6px 8px;
+            width: 10.4%;
+            font-size: 16px;
+            text-align: center;
+            a{
+                color: #00BDCD;
+                //padding: 0;
+                padding: 6px 8px;
+            }
+            &:first-child{
+                border-radius: 2px 0 0 2px;
+                width: 24%;
+            }
+            &:last-child{
+                border-radius: 0 2px 2px 0;
+                border-right: 1px solid #AFAFAF;
+                width: 24%;
+            }
+            &.current{
+                border: 1px solid #00BDCD;
+                padding: 6px 12px;
+                background-color: #00BDCD;
+            }
+        }
+        .pagination-next{
+            a{
+                &:after{
+                    display:none;
+                }
+            }
+            &.disabled{
+                &:after{
+                    display:none;
+                }
+            }
+        }
+        .pagination-previous{
+            a{
+                &:before{
+                    display:none;
+                }
+            }
+            &.disabled{
+                &:before{
+                    display:none;
+                }
+            }
+        }
+        .disabled{
+            color: #777;
+            padding: 6px 8px;
+        }
+    }
+    .pagination-lists-block{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 15px;
+        .show-number{
+            @extend .pagination-lists-block;
+            color: #383838;
+            select{
+                height: 35px;
+                background-color: #fff;
+                color: #000000;
+                width: 68px;
+                margin-left:15px;
+                border: 1px solid #AFAFAF;
+                border-radius: 2px;
+                padding:6px 10px;
+                background-image: url("/assets/images/admin/caret-down.svg");
+                background-repeat: no-repeat;
+                background-position:calc(100% - 12px) center;
+            }
+        }
+    }
+}
+
+.status-btn {
+    background-color: #F0AB05;
+    border-radius: 28px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    padding: 4px 16px;
+    border: 0;
+}
+
+.yellow-btn {
+    background-color: #F0AB05;
+    color: #fff;
+}
+
+.approved-btn {
+    background-color: #34a853;
+    color: #fff;
+}
+
+.deactivate-btn {
+    background-color: #ec7f03;
+    color: #fff;
+}
+
+.suspend-btn {
+    background-color: #03bdcd;
+    color: #fff;
+}
+
+.image-loader {
+    position: absolute;
+    top: 15px;
+}
+
+.image-loader.loading-bar .loader {
+    height: 52px;
+    width: 52px;
+    background-color: #0000005e;
+}

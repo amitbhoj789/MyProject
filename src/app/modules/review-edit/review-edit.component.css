@@ -1,0 +1,19 @@
+.button-group button.btnblue, .button-group button.btnpurple {
+  cursor: pointer;
+}
+
+.wrapper .form-section {
+  padding: 0 0 0;
+}
+
+.progressbar .progress-value.width40 {
+  width: 40%;
+}
+
+.progressbar .progress-value.width50 {
+  width: 50%;
+}
+
+.form-section .resume-keywords-table table tr th:first-child span {
+  margin-left: 8px;
+}/*# sourceMappingURL=review-edit.component.css.map */

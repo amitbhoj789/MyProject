@@ -1,0 +1,190 @@
+.button-group button.btnblue, .button-group button.btnpurple{
+    cursor: pointer;
+}
+
+.form-section {
+    padding-bottom: 20px;
+}
+
+.career-professional-lists li p {
+    word-break: break-all;
+}
+.drag-para{
+    font-weight: 600;
+    font-size: 19px;
+    color: #EB8C35;
+}
+.professional-services-block {
+    padding: 8px 8px 18px 8px;
+    position: relative;
+    .selected-specialization-card {
+        background: #D3EAFF;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        h5{
+            color: #000B37;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 9px 10px;
+            // border-bottom: 1px solid #777;
+            background-color: #7AC0FF;
+            margin-bottom: 5px;
+            span{
+                position: relative;
+                &:after{
+                    position: absolute;
+                    content: '';
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    background-color: #EC008C;
+                    height: 1px;
+                }
+            }
+        }
+        .selected-specialization-lists{
+            li{
+                padding: 10px 10px;
+                display: flex;
+                align-items: center;
+                img{
+                    width: 16px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    .options-specialization-card{
+        margin: 0 -8px;
+        .options-specialization-lists{
+            li{
+                padding: 12px 18px;
+                display: flex;
+                align-items: center;
+                img{
+                    width: 16px;
+                    margin-right: 10px;
+                }
+                &:nth-child(even){
+                    background: #F5F5F5;
+                }
+            }
+        }
+    }
+    .specialization-alert-box {
+        background: #FCEDE9;
+        border: 0.5px solid #EB4E2C;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.16);
+        border-radius: 6px;
+        padding: 16px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        top: 234px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 250px;
+        p{
+            font-weight: 600;
+            font-size: 18px;
+            color: #1D184C;
+            line-height: 30px;
+            margin-left: 15px;
+        }
+        img{
+            width: 40px;
+        }
+    }
+}
+// .drag-container {
+//     cursor: move;
+//     &--origin {
+//         background-color: transparent;
+//     }
+//     &--destination {
+//         background-color: transparent;
+//     }
+//     &--disabled {
+//         pointer-events: none;
+//         cursor: none;
+//     }
+// }
+
+// .item-box {
+//     padding: 14px 12px;
+//     background-color: #fff;
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-start;
+//     img {
+//         margin-right: 10px;
+//         width: 15px;
+//     }
+// }
+
+// .item-box:nth-child(1):before, .item-box:nth-child(2):before, .item-box:nth-child(3):before {
+//     background-image: url('/assets/images/green-tick.svg');
+//     background-size: 15px 15px;
+//     display: inline-block;
+//     width: 15px;
+//     height: 15px;
+//     content: "";
+//     padding-right: 10px;
+//     background-repeat: no-repeat;
+// }
+
+// .item-box:before {
+//     background-image: url('/assets/images/round-plus.png');
+//     background-size: 15px 15px;
+//     display: inline-block;
+//     width: 15px;
+//     height: 15px;
+//     content: "";
+//     padding-right: 10px;
+//     background-repeat: no-repeat;
+// }
+
+// .item-box:nth-child(even) {
+//     background-color: #f5f5f5;
+// }
+
+// .cdk-drag-preview {
+//     box-sizing: border-box;
+// }
+
+// .cdk-drag-placeholder {
+//     opacity: 0;
+// }
+
+// .cdk-drag-animating {
+//     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+// }
+
+// .item-list.cdk-drop-list-dragging .item-box:not(.cdk-drag-placeholder) {
+//     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+// }
+
+.selected-specialization-lists li:before {
+     background-image: url('/assets/images/green-tick.svg');
+     background-size: 15px 15px;
+     display: inline-block;
+     width: 15px;
+     height: 15px;
+     content: "";
+     padding-right: 10px;
+     background-repeat: no-repeat;
+}
+
+.options-specialization-lists li:before {
+    background-image: url('/assets/images/round-plus.png');
+    background-size: 15px 15px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    content: "";
+    padding-right: 10px;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,232 @@
+<app-header-slider></app-header-slider>
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<!-- <h1 class="heading">Both Match</h1> -->
+<div class="steps mt-25">
+    <span>STEP {{this.currentStep}}/{{this.maxStep}}</span>
+    <h2>Select Career Professional Services</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value width{{this.progress}}"></div>
+</div>
+<div class="form-section px-0">
+    <form autocomplete="on" [formGroup]="frmDetails">
+        <!-- <div class="resume-keywords-table">
+            <table width="100%">
+                <thead>
+                <tr>
+                    <th>Expertise <span><img  src="{{config.assetsImages+'keywords.svg'}}"></span></th>
+                    <th>Excluded <span><img  src="{{config.assetsImages+'excluded.svg'}}"></span></th>
+                    <th>Preferred <span><img  src="{{config.assetsImages+'preferred.svg'}}"></span></th>
+                    <th>Required <span><img  src="{{config.assetsImages+'required.png'}}"></span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of include">
+                    <td>{{item.word}}</td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="first{{item.id}}" [value]="item.id" [checked]="1" (change)="selector(item,1)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">
+                            <span class="checkmark"></span>
+                        </label>
+                        <input type="radio" name="first{{item.id}}" [value]="item.id">
+                    </td>
+                </tr>
+
+                <tr *ngFor="let item of matchAny">
+                    <td>{{item.word}}</td> 
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,2)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="any{{item.id}}" [value]="item.id" [checked]="1" (change)="selector(item,2)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,2)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr *ngFor="let item of matchAll"> 
+                    <td>{{item.word}}</td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="all{{item.id}}" [value]="item.id" (change)="selector(item,3)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="all{{item.id}}" [value]="item.id" (change)="selector(item,3)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="custom-radio">
+                            <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="1" (change)="selector(item,3)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+        <div class="keywords-table-block" [ngClass]="{'keywords-table-block' : true, 'sticky-thead' : isSticky}">
+            <div class="keywords-table-header">
+                <label>Expertise <span><img  src="{{config.assetsImages+'keywords.svg'}}"></span> </label>
+                <!-- <label>Excluded <span><img  src="{{config.assetsImages+'excluded.svg'}}"></span> </label> -->
+                <label>Optional <span><img  src="{{config.assetsImages+'preferred.svg'}}"></span> </label>
+                <label>Speciality <span><img  src="{{config.assetsImages+'required.png'}}"></span> </label>
+            </div>
+<!--            <ul class="keyword-table-lists">-->
+<!--                <li *ngFor="let item of include">-->
+<!--                    <p>{{item.word}}</p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="first{{item.id}}" [value]="item.id" [checked]="0" (change)="selector(item,1)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                </li>-->
+<!--                <li *ngFor="let item of matchAny">-->
+<!--                    <p>{{item.word}}</p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,2)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="any{{item.id}}" [value]="item.id" [checked]="0" (change)="selector(item,2)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,2)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                </li>-->
+<!--                <li *ngFor="let item of matchAll">-->
+<!--                    <p>{{item.word}}</p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="all{{item.id}}" [value]="item.id" (change)="selector(item,3)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="all{{item.id}}" [value]="item.id" (change)="selector(item,3)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <label class="custom-radio">-->
+<!--                            <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="0" (change)="selector(item,3)">-->
+<!--                            <span class="checkmark"></span>-->
+<!--                        </label>-->
+<!--                    </p>-->
+<!--                </li>-->
+<!--            </ul>-->
+
+            <ul  class="keyword-table-lists">
+                <ng-container *ngFor="let expData of allExpertiseDefault; index as i">
+                    <li class="list-group-item">
+                        <p>{{expData.service_name}}</p>
+                        <!-- data or in -->
+                        <p>
+                            <label class="custom-radio">
+                                <input type="checkbox" id="optional" name="first{{expData.id}}" [value]="expData.id" (change)="selector($event, expData,2)"  [checked]="expData.optional">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                        <!-- data in -->
+                        <p>
+                            <label class="custom-radio">
+                                <input type="checkbox" id="required" name="first{{expData.id}}" [value]="expData.id" (change)="selector($event, expData,3)"  [checked]="expData.speciality">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                    </li>
+                </ng-container>
+            </ul>
+
+
+            <ul class="keyword-table-lists" style="display: none">
+                <ng-container *ngIf="this.isDataLoader">
+                    <li>
+                        <div class="loading-bar" style="margin: 20px auto">
+                            <span class="loader loader-quart"></span>
+                            <span class="loading-text">Please Wait...</span>
+                        </div>
+                    </li>
+                </ng-container>
+
+<!--                <form [formGroup]="standardCommonForm">-->
+                    <!--<ng-container *ngFor="let expData of allExpertiseDefault; index as i">
+
+                        <li class="list-group-item">
+                            <p>{{expData.service_name}}</p>
+
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="checkbox" id="optional" name="first{{expData.id}}" [value]="expData.id" (change)="selector($event, expData,2)">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="checkbox" id="required" name="first{{expData.id}}" [value]="expData.id" (change)="selector($event, expData,3)" [checked]="expData.selected">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                        </li>
+                    </ng-container>-->
+<!--                </form>-->
+            </ul>
+        </div>
+        <div class="button-group">
+            <button type="button" class="btnblue" [routerLink]="['/candidate-career-professional-match/']">Previous</button>
+            <button type="submit" class="btnpurple" (click)="submitForm()">Next</button>
+        </div>
+        <!-- <p><span><img  src="{{config.assetsImages+'excluded.svg'}}"></span> Career services not required by candidate.</p> -->
+        <p><span><img  src="{{config.assetsImages+'preferred.svg'}}"></span> Optional career services that may be used by candidate later.</p>
+        <p><span><img  src="{{config.assetsImages+'required.png'}}"></span> Career services currently needed by candidate.</p>
+    </form>
+</div>

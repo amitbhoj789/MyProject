@@ -1,0 +1,77 @@
+<header class="jobrep-pro-header" [ngClass]="{'jobrep-pro-header': !showPeopleImage}">
+    <span (click)="toggleLogoClick()" class="logo" [routerLink]="['/home']" [queryParams]="{section: 'start_here'}">
+        <img src="{{config.logoImage}}" alt="logo" width="100%">
+    </span>
+    <div class="head-title">
+        <ul class="content__container__list">
+            <li class="content__container__list__item" [routerLink]="['/match','fromHeader']">Match Job. <span>Match Candidate</span></li>
+            <li class="content__container__list__item" [routerLink]="['/match','fromHeader']">Match Candidate. <span>Don't Search</span></li>
+            <li class="content__container__list__item" [routerLink]="['/match','fromHeader']">Match Job. <span>Don't Search</span></li>
+        </ul>
+    </div>
+    <ng-sidebar-container class="sidebar-parent">
+        <ng-sidebar [opened]="opened" [position]="'right'">
+            <div class="side-menu-block">
+                <ul class="side-menu-lists">
+
+                    <li (click)="toggleClick(false)"><a [routerLink]="['/']"><span> <img alt="img_item1" src="{{config.assetsImages+'home-icon.svg'}}">Home</span><img alt="item4" src="{{config.assetsImages+'right-angle-arrow.svg'}}"></a></li>
+
+                    <li (click)="toggleClick(false)"><a [routerLink]="['/match','fromHeader']"><span><img alt="img_item2" src="{{config.assetsImages+'match-icon.svg'}}">Both Match</span><img alt="item4" src="{{config.assetsImages+'right-angle-arrow.svg'}}"></a></li>
+
+                    <li (click)="toggleClick(false)"><a [routerLink]="['./step-job-journey']"><span><img alt="img_item3" src="{{config.assetsImages+'7step-icon.svg'}}">7Step Job Journey</span><img alt="item4" src="{{config.assetsImages+'right-angle-arrow.svg'}}"></a></li>
+
+                    <ng-container *ngIf="config.isShowPodcast">
+                        <li (click)="toggleClick(false)"><a [routerLink]="['/podcast']"><span><img alt="img_item2" src="{{config.assetsImages+'podcast-icon.svg'}}">JobHelp Podcast</span><img alt="item4" src="{{config.assetsImages+'right-angle-arrow.svg'}}"></a></li>
+                    </ng-container>
+
+                    <ng-container *ngIf="!this.fun.loginToken">
+                        <li (click)="toggleClick(false)"><a [routerLink]="['/login','jobReps']"><span><img alt="img_item3" src="{{config.assetsImages+'jobreps-icon.svg'}}">JobRep Register / Login</span> <img alt="item4" src="{{config.assetsImages+'right-angle-arrow.svg'}}"></a></li>
+                    </ng-container>
+                </ul>
+
+                <div class="sidebar-profile-block" *ngIf="this.fun.loginToken">
+                    <div class="sidebar-profile">
+                        <figure>
+                            <span>
+                                <img alt="" [src]="imageUrl">
+                            </span>
+                                <small>100%</small>
+                        </figure>
+                        <div class="ml-15">
+                            <h6>{{this.email}}</h6>
+                            <label>Employee</label>
+                        </div>
+                    </div>
+                    <ul class="profile-menu-list mt-20">
+                        <li (click)="toggleClick(false)" [routerLink]="['/profile-update']" [routerLinkActive]="['active']">
+                            <a href="javascript:void(0)"><img alt="profile-update" src="{{config.assetsImages+'user.svg'}}"> View & Update Profile</a>
+                        </li>
+
+                        <li (click)="toggleClick(false)" [routerLink]="['/jobreps-expertise']" [routerLinkActive]="['active']">
+                            <a href="javascript:void(0)"><img alt="expertise" src="{{config.assetsImages+'setting.svg'}}"> Update Expertise </a>
+                        </li>
+
+                        <li><a href="javascript:void(0)" (click)="logout()"><img alt="logout" src="{{config.assetsImages+'logout.svg'}}"> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </ng-sidebar>
+
+        <div class="toggle-button" ng-sidebar-content>
+            <span class="toggle-drawer" (click)="toggleClick(true)"><img alt="menu" src="{{config.assetsImages+'menu.svg'}}" *ngIf="!opened"></span>
+            <span class="toggle-cross" (click)="toggleClick(false)"><img alt="cross" src="{{config.assetsImages+'cross.svg'}}" *ngIf="opened"></span>
+        </div>
+    </ng-sidebar-container>
+</header>
+
+<!--<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" *ngIf="this.showPeopleImage">-->
+<!--    <div ngxSlickItem class="carousel-item slide candidate-collage">-->
+<!--        <img src="{{slides[slide].img}}" alt="Los Angeles" width="100%">-->
+<!--    </div>-->
+<!--    &lt;!&ndash; <div ngxSlickItem class="carousel-item slide">-->
+<!--        <img src="assets/images/people-image-01.jpg" alt="Chicago" >-->
+<!--    </div>-->
+<!--    <div ngxSlickItem class="carousel-item slide">-->
+<!--        <img src="assets/images/people-image-02.jpg" alt="New York" >-->
+<!--    </div> &ndash;&gt;-->
+<!--</ngx-slick-carousel>-->

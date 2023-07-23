@@ -1,0 +1,212 @@
+<app-header-slider></app-header-slider>
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<!-- <h1 class="heading">Both Match</h1> -->
+<div class="steps mt-25">
+    <span>STEP {{this.currentStep}}/{{this.maxStep}}</span>
+    <h2>Skills From Your Resume</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value width{{this.progress}}"></div>
+</div>
+<div class="form-section pb-0">
+    <form [formGroup]="frmDetails" autocomplete="on">
+        <!-- <div class="resume-keywords-table">
+            <table width="100%">
+                <thead>
+                <tr>
+                    <th>Skills <span><img  src="{{config.assetsImages+'keywords.svg'}}"></span></th>
+                    <th style="width: 0!important;">Excluded <span><img  src="{{config.assetsImages+'excluded.svg'}}"></span></th>
+                    <th>Preferred <span><img  src="{{config.assetsImages+'preferred.svg'}}"></span></th>
+                    <th>Required <span> <img  src="{{config.assetsImages+'required.png'}}"></span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngIf="this.searchType === 'free'">
+                    <tr *ngFor="let item of matchAll">
+                        <td>{{item.word}}</td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="item.excluded" (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="item.preferred" (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="item.required"  (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <ng-container *ngIf="this.searchType !== 'free'">
+                    <tr *ngFor="let item of include">
+                        <td>{{item.word}}</td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="first{{item.id}}" [value]="item.id" [checked]="1" (change)="selector(item,1)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                    </tr>
+
+                    <tr *ngFor="let item of matchAny">
+                        <td>{{item.word}}</td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,2)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="any{{item.id}}" [value]="item.id" [checked]="1" (change)="selector(item,2)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,2)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                    </tr>
+
+                    <tr *ngFor="let item of matchAll">
+                        <td>{{item.word}}</td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="all{{item.id}}" [value]="item.id" (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="all{{item.id}}" [value]="item.id" (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-radio">
+                                <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="1"  (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table> 
+        </div> -->
+
+        <div class="keywords-table-block" [ngClass]="{'keywords-table-block' : true, 'sticky-thead' : isSticky}">
+            <div class="keywords-table-header">
+                <label>Skills <span><img  src="{{config.assetsImages+'keywords.svg'}}"></span> </label>
+                <label>Excluded <span><img  src="{{config.assetsImages+'excluded.svg'}}"></span> </label>
+                <label>Preferred <span><img  src="{{config.assetsImages+'preferred.svg'}}"></span> </label>
+                <label>Required <span><img  src="{{config.assetsImages+'required.png'}}"></span> </label>
+            </div>
+            <ul class="keyword-table-lists">
+                <ng-container *ngIf="this.searchType === 'free'">
+                <li *ngFor="let item of matchAll">
+                    <p>{{item.word}}</p>
+                    <p>
+                        <label class="custom-radio">
+                            <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="item.excluded" (change)="selector(item,3)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label class="custom-radio">
+                            <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="item.preferred" (change)="selector(item,3)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label class="custom-radio">
+                            <input type="radio" name="all{{item.id}}" [value]="item.id" [checked]="item.required"  (change)="selector(item,3)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </p>
+                </li>
+                </ng-container>
+
+                <ng-container *ngIf="this.searchType !== 'free'">
+                    <li *ngFor="let item of include">
+                        <p>{{item.word}}</p>
+                        <p>
+                            <label class="custom-radio">
+                                <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="custom-radio">
+                                <input type="radio" name="first{{item.id}}" [value]="item.id" [checked]="1" (change)="selector(item,1)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="custom-radio">
+                                <input type="radio" name="first{{item.id}}" [value]="item.id" (change)="selector(item,1)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                    </li>
+
+                    <li *ngFor="let item of matchAny">
+                        <p>{{item.word}}</p>
+                        <p>
+                            <label class="custom-radio">
+                                <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,2)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="custom-radio">
+                                <input type="radio" name="any{{item.id}}" [value]="item.id" [checked]="1" (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="custom-radio">
+                                <input type="radio" name="any{{item.id}}" [value]="item.id" (change)="selector(item,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+
+        <div class="button-group">
+            <button type="button" class="btnblue" [routerLink]="['/upload-resume/'+this.searchType]">Previous</button>
+            <button type="submit" class="btnpurple" (click)="submitForm()">
+                <ng-container *ngIf="isStep3Loading">Loading...  </ng-container> <ng-container *ngIf="!isStep3Loading">Next</ng-container>
+            </button>
+        </div>
+        <p><span><img  src="{{config.assetsImages+'excluded.svg'}}"></span> Recommend excluding keywords not aligned with the career path
+            and potentially not listed in the job descriptions.</p>
+        <p><span><img  src="{{config.assetsImages+'preferred.svg'}}"></span> Select only preferred skills and qualifications that are important to
+            the chosen career path and relevant to potential employers.</p>
+        <p><span><img  src="{{config.assetsImages+'required.png'}}"></span> Too many required keywords will diminish matches in Step 4 since ALL keywords need to match for both jobseeker and employer.</p>
+    </form>
+</div>

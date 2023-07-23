@@ -1,0 +1,26 @@
+<footer class="h-80">
+    <ng-container *ngIf="this.showFooter">
+        <div class="top-foot" *ngIf="this.showUsefulLinks">
+            <div class="w-50">
+                <h3><a [routerLink]="['/useful-links','help-center']">Useful Links</a></h3>
+                <ul class="footer-menu-list">
+                    <li><a [routerLink]="['/useful-links','about-us']" routerLinkActive="active-menu-item">About Us</a></li>
+                    <li><a [routerLink]="['/useful-links','help-center']" [queryParams]="{ helpCenterBlock: true }" routerLinkActive="active-menu-item">Help Center</a></li>
+                    <li><a [routerLink]="['/useful-links','search-vs-match']" routerLinkActive="active-menu-item">Job Matching</a></li>
+                    <li><a [routerLink]="['/useful-links','press-corner']" routerLinkActive="active-menu-item">Press Corner</a></li>
+                    <li><a [routerLink]="['/useful-links','privacy-policy']" routerLinkActive="active-menu-item">Privacy Policy</a></li>
+                    <li><a [routerLink]="['/useful-links','terms-and-conditions']" routerLinkActive="active-menu-item">Terms And Conditions</a></li>
+                </ul>
+            </div>
+            <figure *ngIf="config.isShowPodcast" [routerLink]="['/podcast']" class="w-50">
+                <img src="{{config.assetsImages+'jobhelp-footer.jpg'}}" width="100%">
+            </figure>
+        </div>
+        <div class="bottom-foot">
+            <p>© 2023 JobRep Network LLC – dba Both Match</p>
+            <p>All Rights Reserved</p>
+            <p>USA Talent <img alt="usa flag" src="{{config.assetsImages+'usa-flag.svg'}}"></p>
+        </div>
+    </ng-container>
+    <div id="sliderStop"></div>
+</footer>

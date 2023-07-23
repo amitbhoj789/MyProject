@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'DilleniaUPC';
+    src: url('DilleniaUPCBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

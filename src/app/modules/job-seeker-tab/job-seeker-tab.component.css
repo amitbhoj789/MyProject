@@ -1,0 +1,25 @@
+.badge {
+  padding: 3px 0px;
+  font-weight: 400;
+  font-size: 9px;
+  text-align: center;
+  border-radius: 23px;
+  line-height: 15px;
+  white-space: nowrap;
+  width: 70px;
+}
+
+.badge.free {
+  background-color: #00BB32;
+  color: #fff;
+}
+
+.badge.comming-soon {
+  background-color: #0B4290;
+  color: #fff;
+}
+
+.badge.signup-here {
+  background-color: #EB4335;
+  color: #fff;
+}/*# sourceMappingURL=job-seeker-tab.component.css.map */

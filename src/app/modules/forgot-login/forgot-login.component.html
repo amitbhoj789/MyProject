@@ -1,0 +1,17 @@
+<form class="form-section" [formGroup]="forgotform">
+    <div class="forgotpassword-block">
+        <figure>
+            <img src="{{config.assetsImages+'password.png'}}"  width="100%">
+        </figure>
+        <h3 class="mt-30 mb-10">FORGOT YOUR LOGIN ID?</h3>
+        <p class="mb-30">Enter your email address so a new link can be sent to reset your login id.</p>
+        <div class="input-group">
+            <label>Email ID or Mobile Number</label>
+            <input type="email" formControlName="email_mobile">
+        </div>
+    </div>
+    <div class="button-group">
+        <button type="button" [routerLink]="['/login/'+this.loginType]" class="btnblue">Previous</button>
+        <button type="submit" class="btnpurple" (click)="submitForgot()"><div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div><span *ngIf="!this.isLoader">Next</span></button>
+    </div>
+</form>

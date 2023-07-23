@@ -1,0 +1,88 @@
+<main>
+    <div class="dashboard-body">
+        <h1 class="section-common-heading text-center mb-25">Dashboard</h1>
+        <ul class="admin-users-lists">
+            <li class="pending-users" (click)="getUser('pending')">
+                <div class="user-count">
+                    <span><img  src="{{config.assetsImages+'admin/pending-users.svg'}}"></span>
+                    <ng-container *ngIf="this.loader"><a class="loading-bar"><div class="loader loader-quart"></div></a></ng-container>
+                    <ng-container *ngIf="!this.loader">{{this.userPending?.length}}</ng-container>
+                </div>
+                <label class="mt-15">Pending Users </label>
+            </li>
+            <li class="approved-users" (click)="getUser('approved')">
+                <div class="user-count">
+                    <span><img  src="{{config.assetsImages+'admin/approved-users.svg'}}"></span>
+                    <ng-container *ngIf="this.loader"><a class="loading-bar"><div class="loader loader-quart"></div></a></ng-container>
+                    <ng-container *ngIf="!this.loader">{{this.userApproved?.length}}</ng-container>
+                </div>
+                <label class="mt-15">Approved Users </label>
+            </li>
+            <li class="suspend-users" (click)="getUser('suspend')">
+                <div class="user-count">
+                    <span><img  src="{{config.assetsImages+'admin/suspend-users.svg'}}"></span>
+                    <ng-container *ngIf="this.loader"><a class="loading-bar"><div class="loader loader-quart"></div></a></ng-container>
+                    <ng-container *ngIf="!this.loader">{{this.userSuspend?.length}}</ng-container>
+                </div>
+                <label class="mt-15">Suspend Users  </label>
+            </li>
+            <li class="deactivate-users" (click)="getUser('deactivate')">
+                <div class="user-count">
+                    <span><img alt="" src="{{config.assetsImages+'admin/deactivate-users.svg'}}"></span>
+                    <ng-container *ngIf="this.loader"><a class="loading-bar"><div class="loader loader-quart"></div></a></ng-container>
+                    <ng-container *ngIf="!this.loader">{{this.userDeactivate?.length}}</ng-container>
+
+                </div>
+                <label class="mt-15">Deactivate Users </label>
+            </li>
+        </ul>
+
+        <a class="loading-bar" *ngIf="this.loader"><span class="loader loader-quart"></span><span class="loading-text">Please wait!</span></a>
+
+        <a class="loading-bar" *ngIf="this.loaderOnClick"><span class="loader loader-quart"></span><span class="loading-text">Please wait!</span></a>
+
+        <ng-container *ngIf="!this.loader">
+            <h2 class="block-heading mb-25 mt-10" style="text-transform: capitalize;">{{this.userType}} Users</h2>
+<!--            <a *ngIf="this.loaderOnClick" class="loading-bar image-loader"><span class="loader loader-quart"></span></a>-->
+            <ul class="users-detail-lists">
+                <li *ngFor="let user of userListings | paginate: pagingConfig; let i = index" (click)="getUserDetails(user)">
+                    <div class="user-detail-block">
+                        <ng-container *ngIf="user.image!==null">
+                            <span><img alt="" src="{{config.imageStoragePath()+user.image}}"></span>
+                        </ng-container>
+                        <ng-container *ngIf="user.image===null">
+                            <span><img alt="" src="{{config.assetsImages+'dummy-user.png'}}"></span>
+                        </ng-container>
+
+                        <div class="user-detail">
+                            {{user.name}}
+                            <label>{{config.dateConvertDBtoUI(user.date,'type','d-MM-y')}}</label>
+                        </div>
+                    </div>
+
+                    <button class="status-btn" [ngClass]="{'yellow-btn': user.user_status === 'Pending', 'approved-btn': user.user_status === 'Approved', 'suspend-btn': user.user_status === 'Suspend', 'deactivate-btn': user.user_status === 'Deactivate'}">{{user.user_status}}</button>
+                    <small class="list-count">{{i+1}}</small>
+                </li>
+            </ul>
+            <ng-container *ngIf="this.userListings.length==0">No users found</ng-container>
+            <div class="mt-40">
+                <div class="pagination-lists-block mb-25">
+                    <div class="show-number">
+                        Show
+                        <select (change)="onTableSizeChange($event, this.userType)">
+                            <option *ngFor="let size of tableSize" [ngValue]="size">
+                                {{ size }}
+                            </option>
+                        </select>
+                    </div>
+                    <span>
+                     {{ (currentPage - 1) * this.pagingConfig.itemsPerPage + 1 }} - <ng-container *ngIf="currentPage * this.pagingConfig.itemsPerPage>userListings?.length">{{userListings?.length}}</ng-container>
+                    <ng-container *ngIf="currentPage * this.pagingConfig.itemsPerPage<=userListings?.length">{{currentPage * this.pagingConfig.itemsPerPage}}</ng-container> of {{ userListings?.length }}
+                </span>
+                </div>
+                <pagination-controls (pageChange)="onTableDataChange($event, this.userType)"></pagination-controls>
+            </div>
+        </ng-container>
+    </div>
+</main>
+<figure class="footer-figure"><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>

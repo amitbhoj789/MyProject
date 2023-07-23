@@ -1,0 +1,36 @@
+.button-group button.btnblue, .button-group button.btnpurple {
+    cursor: pointer;
+}
+
+.captcha-btn {
+    position: relative;
+    margin: 20px 0 0;
+}
+
+.progressbar .progress-value.width33 {
+    width: 33.33%;
+}
+
+.form-section .check-group .forget {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.update-pro-banner h4 {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-eye {
+    position: absolute;
+}
+
+// ::ng-deep .volume-booster-wrapper + div{
+//     top: auto!important;
+//     bottom: 0;
+// }
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

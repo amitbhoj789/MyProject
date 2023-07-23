@@ -1,0 +1,189 @@
+<app-header-slider></app-header-slider>
+<div class="jobreps-banner">
+    <h2 class="section-common-heading  text-center">CAREER PROFESSIONALS</h2>
+    <h3 class="section-sub-common-heading text-center">Expertise Registration</h3>
+    <div class="steps mt-25">
+        <span>STEP 2/3</span>
+        <h2>Profile Update</h2>
+    </div>
+    <div class="progressbar">
+        <div class="progress-value w-100"></div>
+    </div>
+</div>
+<form [formGroup]="userForm" #standardCommonNgForm="ngForm">
+    <div class="modal-view-container">
+        <div #modalView class="modal view">
+            <div class="modal-view-details profile-photo-popup">
+                <div class="profile-popup-block">
+                    <h4>Profile Photo Upload <img alt="close" class="btn-cursor" (click)="closeUploadProfile()" src="{{config.assetsImages+'close.svg'}}"></h4>
+                    <div class="profile-popup-content text-center">
+                        <div class="input-loader">
+                            <figure><img alt="profile" class="img-on-modal" [src]="imageUrl"></figure>
+                            <div class="icon-loader" *ngIf="this.imgLoader">
+                                <i class="loader"></i>
+                            </div>
+                        </div>
+
+                        <div class="upload-remove mt-25">
+                            <span class="btn-cursor" (click)="file.click()"><img alt="upload" src="{{config.assetsImages+'upload-photo.svg'}}"> Upload Photo</span>
+<!--                            <span class="btn-cursor btn-remove"><img alt="remove" src="{{config.assetsImages+'remove-photo.svg'}}"> Remove Photo</span>-->
+                            <input type="file" accept=".png, .jpg, .jpeg" (change)="onFileSelected($event)" style="display: none" #file>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-section jobreps-form  mx-0 jobreps-update-form">
+        <div class="profile-update text-center">
+            <figure>
+                <img alt="profile" class="profile-img" [src]="imageUrl">
+
+                <span>
+                    <img alt="upload" class="btn-cursor" (click)="uploadProfile()" src="{{config.assetsImages+'camera.svg'}}">
+                </span>
+            </figure>
+            <span class="user-status" *ngIf="this.userDetails.is_active">Active</span>
+            <span class="user-status inactive" *ngIf="!this.userDetails.is_active">In-Active</span>
+        </div>
+        <span class="text-danger" *ngIf="userForm.controls['image'].errors && userForm.controls['image'].touched">Image is required</span>
+        <div class="input-group">
+            <label>Full Name</label>
+            <div class="input-loader">
+                <input type="text" formControlName="name">
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['name'].errors && userForm.controls['name'].touched">Name field is required</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Email</label>
+            <div class="input-loader">
+                <input class="bg-grey" type="email" formControlName="email" [readOnly]="true">
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['email'].errors && userForm.controls['email'].touched">Email field is required</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Profile Header</label>
+            <div class="input-loader">
+                <input type="text" formControlName="profile_header" >
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['profile_header'].errors && userForm.controls['profile_header'].touched">Profile header field is required</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Service Summary</label>
+            <div class="input-loader">
+                <textarea rows="4" formControlName="service_summary" maxlength="500"></textarea>
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['service_summary'].errors && userForm.controls['service_summary'].touched">Service summary field is required</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>City</label>
+            <div class="input-loader">
+                <input type="text" formControlName="city" >
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['city'].errors && userForm.controls['city'].touched">City field is required</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>State</label>
+            <div class="input-loader">
+                <input type="text" formControlName="state" >
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['state'].errors && userForm.controls['state'].touched">State field is required</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Country</label>
+            <div class="input-loader">
+                <input type="text" formControlName="country" >
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['country'].errors && userForm.controls['country'].touched">Country field is required</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Phone Number</label>
+            <div class="input-loader">
+                <input type="text" mask="(000) 000-0000" formControlName="total_years_in_career_service" >
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['total_years_in_career_service'].errors && userForm.controls['total_years_in_career_service'].touched">Phone number field is required</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Professional Profile Link</label>
+            <div class="input-loader">
+                <input type="text" formControlName="linkedin_link" >
+                <div class="icon-loader" *ngIf="this.inputLoader">
+                    <i class="loader"></i>
+                </div>
+                <span class="text-danger" *ngIf="userForm.controls['linkedin_link'].errors && userForm.controls['linkedin_link'].touched">Valid professional profile link field is required</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Top Three Specialities</label>
+            <ng-container *ngIf="getExpData && getExpData.length">
+                <ng-multiselect-dropdown
+                        options="getExpData| orderBy:'label'"
+                    [placeholder]="'Select'"
+                    [settings]="dropdownSettings"
+                    [data]="getExpData"
+                    formControlName="top3_specialites"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+            </ng-container>
+            <ng-container *ngIf="!getExpData ">
+                <ng-multiselect-dropdown
+                    [placeholder]="'Select'"
+                    [disabled] = "true"
+                    [settings]="dropdownSettings"
+                    [data]="getExpData"
+                    formControlName="top3_specialites"
+                >
+                </ng-multiselect-dropdown>
+            </ng-container>
+            <span class="text-danger" *ngIf="userForm.controls['top3_specialites'].errors && userForm.controls['top3_specialites'].touched">Specialities field is required</span>
+        </div>
+        <div class="approval-date mt-30">
+            <div>
+                <h5>Approval Date</h5>
+                <label>{{this.config.dateConvertDBtoUI(this.userDetails.updated_at,'date','d-MM-y','-')}}</label>
+            </div>
+            <div>
+                <h5>Last Updated</h5>
+                <label>{{this.config.dateConvertDBtoUI(this.userDetails.updated_at,'date','d-MM-y','-')}}</label>
+            </div>
+        </div>
+        <div class="provide-service mt-20 text-center">
+            <img alt="" src="{{config.assetsImages+'lightbulb.png'}}">
+            <p>In order to provide quality service to candidates, a submitted career coach profile will be active in the portal after review and approval.</p>
+        </div>
+    </div>
+    <div class="button-group">
+        <button type="submit" class="btnblue" (click)="backToOtp()">Previous</button>
+        <button type="submit" class="btnpurple" (click)="updateProfile()"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">Next</span> </button>
+    </div>
+</form>
+<app-footer-curate-career></app-footer-curate-career>
+<figure><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>

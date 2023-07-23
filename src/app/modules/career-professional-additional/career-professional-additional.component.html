@@ -1,0 +1,101 @@
+<app-header-slider></app-header-slider>
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<div class="steps mt-25">
+    <span>STEP {{this.currentStep}}/{{this.maxStep}}</span>
+    <h2>Additional Input</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value width{{this.progress}}"></div>
+</div>
+<div class="form-section">
+    <form [formGroup]="frmDetails" autocomplete="on" class="px-15">
+<!--        <div class="input-group specialization-dropdown">-->
+<!--            <label>Specialization <span class="color-sky">(maximum three)</span> </label>-->
+<!--            <ng-container *ngIf="industryData && industryData.length">-->
+<!--                <ng-multiselect-dropdown-->
+<!--                        [ngClass]="closeDropdown ? 'openDropdown' : 'closeDropdown'"-->
+<!--                        [placeholder]="'Please Select'"-->
+<!--                        [(ngModel)]="selectedItems1"-->
+<!--                        [settings]="dropdownSettings"-->
+<!--                        [data]="industryData"-->
+<!--                        (click)="handleClick($event)"-->
+<!--                        (onDropDownClose)="onDropDownClose($event)"-->
+<!--                        formControlName="specializationArray"-->
+<!--                        (onSelect)="onItemSelect($event)"-->
+<!--                        (onSelectAll)="onSelectAll($event)"-->
+<!--                >-->
+<!--                </ng-multiselect-dropdown>-->
+<!--                <span class="dropdown-open-close btn-toggle-open">Change -->
+<!--                    <img src="{{config.assetsImages+'pointer.png'}}" class="btn-pointer">-->
+<!--                </span>-->
+<!--                <span class="dropdown-open-close btn-toggle-close">Close -->
+<!--                    <img src="{{config.assetsImages+'pointer.png'}}" class="btn-pointer">-->
+<!--                </span>-->
+<!--            </ng-container>-->
+
+<!--&lt;!&ndash;            <ng-select id="txtSpecialization" bindLabel="name" bindValue="key" [items]="industryList" notFoundText="No Found!" formControlName="specialization" [searchable]="false"></ng-select>&ndash;&gt;-->
+<!--            <div *ngIf="getControls['specializationArray']['invalid']" class="alert alert-danger">-->
+<!--                <div *ngIf="(getControls['specializationArray']['errors']?.['required'] && getControls['specializationArray']['touched']) || isInvalid">-->
+<!--                    Specialization is required.-->
+<!--                </div>-->
+<!--                <div *ngIf="getControls['specializationArray']['errors']?.['pattern']">-->
+<!--                    Invalid specialization.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="input-group">
+            <label for="txtCountry">Country</label>
+            <input type="text" id="txtCountry" name="country" value="" formControlName="country" readonly>
+            <div *ngIf="getControls['country']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['country']['errors']?.['required'] && getControls['country']['touched']) || isInvalid">
+                    Country is required.
+                </div>
+                <div *ngIf="getControls['country']['errors']?.['pattern']">
+                    Invalid Country.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtState">State</label>
+            <input type="text" id="txtState" name="state" value="" formControlName="state">
+            <div *ngIf="getControls['state']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['state']['errors']?.['required'] && getControls['state']['touched']) || isInvalid">
+                    State is required.
+                </div>
+                <div *ngIf="getControls['state']['errors']?.['pattern']">
+                    Invalid State.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtCity">City</label>
+            <input type="text" id="txtCity" name="city" value="" formControlName="city">
+            <div *ngIf="getControls['city']['invalid']">
+                <div *ngIf="(getControls['city']['errors']?.['required'] && getControls['city']['touched']) || isInvalid" class="alert alert-danger">
+                    Job Department is required.
+                </div>
+                <div *ngIf="getControls['city']['errors']?.['pattern']" class="alert alert-danger">
+                    Invalid Job Department.
+                </div>
+            </div>
+        </div>
+<!--        <div class="input-group">-->
+<!--            <label for="txtPrimaryService">Primary Service</label>-->
+<!--            <input type="text" id="txtPrimaryService" name="primary_service" value="" formControlName="primary_service">-->
+<!--            <div *ngIf="getControls['primary_service']['invalid']" class="alert alert-danger">-->
+<!--                <div *ngIf="(getControls['primary_service']['errors']?.['required'] && getControls['primary_service']['touched']) || isInvalid">-->
+<!--                    Primary service is required.-->
+<!--                </div>-->
+<!--                <div *ngIf="getControls['primary_service']['errors']?.['pattern']">-->
+<!--                    Invalid Primary service.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </form>
+    <div class="button-group">
+        <button type="button" class="btnblue" [routerLink]="['/career-professional-services']">Previous</button>
+
+        <button type="submit" class="btnpurple" (click)="submitForm()"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">View Matches</span> </button>
+    </div>
+</div>

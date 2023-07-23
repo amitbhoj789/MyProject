@@ -1,0 +1,650 @@
+<app-header-slider></app-header-slider>
+<ng-container *ngIf="aboutTab">
+    <div class="about-banner mt-35">
+        <div>
+            <h1 class="mb-5">About Us</h1>
+            <label>Saving Time, Money and Reducing Stress</label>
+        </div>
+    </div>
+    <p class="mt-20 mb-15">JobRep Network LLC doing business as BothMatch.com is a Connecticut based modern human
+        resource technology startup dedicated to empowering jobseekers in their pursuit of meaningful employment. We
+        understand
+        that finding the right job can be a challenging and overwhelming process, and that's why we're here to simplify
+        and enhance your job match journey.</p>
+    <p>We are committed to your success. We believe that every individual deserves to find fulfilling work that aligns
+        with their passions and strengths. Our mission is to empower you with the tools, knowledge, and support you need
+        to unlock your true potential and embark on a rewarding career journey.</p>
+    <p class="mt-15">
+        Join us and take control of your career. Let's redefine the way jobseekers connect with opportunities and make
+        your dream job a reality. </p>
+    <i>Kumar Palani, Founder</i>
+    <h3 class="text-center mb-20 mt-30 section-common-heading">The BothMatch Journey</h3>
+    <div class="bothMatch-journey-block">
+        <ul>
+            <li>
+                <div>
+                    <p>Tried to re-enter the workforce after a seven year startup project.
+                        Saw first hand the challenges of jobseekers and recruiters.</p>
+                </div>
+                <label>2012</label>
+            </li>
+            <li>
+                <div>
+                    <p>Registered aligncareer.com and explored ways to improve the recruiting experience. Business plan
+                        developed with 20 years knowledge and experience.</p>
+                </div>
+                <label>2014</label>
+            </li>
+            <li>
+                <div>
+                    <p>Covid causes millions of Americans to lose their jobs. The need to reactivate the recruitment
+                        system project is prioritized. Development work on the Curate Match Framework<sup>TM</sup> is started in
+                        August 2020. </p>
+                </div>
+                <label>2020</label>
+            </li>
+            <li>
+                <div>
+                    <p>JobRep Network LLC is registered in March 2021 and a business website is launched.</p>
+                </div>
+                <label>2021</label>
+            </li>
+            <li>
+                <div>
+                    <p>Work begins on the JobRep Network community platform </p>
+                </div>
+                <label>2022</label>
+            </li>
+            <li>
+                <div>
+                    <p>JobRep.com network is launched in March 2023
+                        <br /><br /> Phase 1 Curate Match Framework<sup>TM</sup> is completed in July 2023 and BothMatch.com portal
+                        is launched for the desktop and mobile.
+                    </p>
+                </div>
+                <label>2023</label>
+            </li>
+        </ul>
+    </div>
+
+<!--    <div class="contact-banner">-->
+<!--        <h1 class="text-center">Contact Us</h1>-->
+<!--    </div>-->
+
+</ng-container>
+
+<ng-container *ngIf="helpCenterTab">
+    <div *ngIf="helpCenterBlock">
+        <h3 class="section-common-heading mt-30 mb-30">Help Center</h3>
+        <ul class="featured-resources-lists">
+            <li>
+                <h5 class="mb-15">Questions & Answers</h5>
+                <!-- <a href="https://jobrep.com/spaces/9236453/page" target="_blank"> -->
+                <div class="resources-detail-box" (click)="showFaq()">
+                    <figure><img src="{{config.assetsImages+'faq.png'}}" width="100%"></figure>
+                    <div class="resource-content ml-10">
+                        <p>Get quick answers to common questions</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h5 class="mb-15">Jobseekers Guide</h5>
+                <div class="resources-detail-box" (click)="showJobseeker()">
+                    <figure><img src="{{config.assetsImages+'jobseekers-guide.png'}}" width="100%"></figure>
+                    <div class="resource-content ml-10">
+                        <p>A guided path to find the ideal job</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h5 class="mb-15">Blog/Community</h5>
+<!--                <a href="https://jobrep.com/" target="_blank">-->
+                    <div class="resources-detail-box" (click)="showCommunity()">
+                        <figure><img  src="{{config.assetsImages+'blog-community.png'}}" width="100%;"></figure>
+                        <div class="resource-content ml-10">
+                            <p>Connect with jobseekers and recruiting professionals</p>
+                        </div>
+                    </div>
+<!--                </a>-->
+            </li>
+        </ul>
+    </div>
+
+    <ul class="help-center-tabs mt-30">
+        <li (click)="faqTabs(0)" *ngIf="this.isCommunityVisible && !helpCenterBlock || this.isJobseekerVisible && !helpCenterBlock">
+            <a href="javascript:void(0)">
+                <h5>FAQ’s</h5>
+                <figure><img src="{{config.assetsImages+'faq-thumbnail.png'}}" width="100%"></figure>
+                <p>Get quick answers to common questions</p>
+            </a>
+        </li>
+        <li (click)="faqTabs(1)" *ngIf="this.isCommunityVisible && !helpCenterBlock || this.isFaqVisible && !helpCenterBlock">
+            <a href="javascript:void(0)">
+                <h5>Jobseekers Guide</h5>
+                <figure><img src="{{config.assetsImages+'jobseekers-guide-thumbnail.png'}}" width="100%"></figure>
+                <p>A guided path to find the ideal job</p>
+            </a>
+        </li>
+        <li (click)="faqTabs(2)" *ngIf="this.isFaqVisible && !helpCenterBlock || this.isJobseekerVisible && !helpCenterBlock">
+            <a href="javascript:void(0)">
+                <h5>Blog/Community</h5>
+                <figure><img src="{{config.assetsImages+'blog-community-thumbnail.png'}}" width="100%;"></figure>
+                <p>Connect with jobseekers and recruiting professionals</p>
+            </a>
+        </li>
+    </ul>
+
+    <div *ngIf="isFaqVisible && !helpCenterBlock" class="faq-content-block">
+        <h3 class="section-common-heading mt-40 mb-40 text-maroon text-center">Questions & Answers</h3>
+        <figure class="mb-30"><img src="{{config.assetsImages+'FAQ-block.jpg'}}" width="100%"></figure>
+        <!-- <h2 class="mb-30">General Questions & Answers for Jobseekers</h2> -->
+        <h4 class="faq-head mb-5"> <span>Q:</span> How can I create a compelling
+            resume that grabs the attention of employers?</h4>
+        <p><span>A:</span> To create a compelling resume, ensure it is well-organized, highlights your relevant skills
+            and experiences, uses concise and clear language, and is tailored to each job application. Focus on
+            showcasing your achievements and quantifiable results.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> What are employers typically
+            looking for in candidates? What skills and qualifications are in demand?
+        </h4>
+        <p><span>A:</span> Employers often look for a combination of technical skills, soft skills, relevant work
+            experience, and a cultural fit with their organization. In-demand skills vary by industry, but some commonly
+            sought-after skills include communication, problem-solving, teamwork, adaptability, and proficiency in
+            specific software or programming languages.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> Where can I find job openings and
+            opportunities in my desired field?
+        </h4>
+        <p><span>A:</span> You can find job openings and opportunities in your desired field through various channels
+            such as online job boards, company websites, professional networking platforms, recruitment agencies, career
+            fairs, and industry-specific publications. To save time, money and reduce stress, use modern job matching
+            platforms like BothMatch.com.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> How can I enhance my online
+            presence and increase my chances of being noticed by employers?
+        </h4>
+        <p><span>A:</span> Enhance your online presence by creating a professional LinkedIn profile, showcasing your
+            skills and experiences, engaging in industry-related discussions, and networking with professionals in your
+            field. Additionally, consider building a personal website or portfolio to showcase your work.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> How can I improve my chances of
+            landing a job in a competitive market?
+        </h4>
+        <p><span>A:</span> To improve your chances in a competitive market, focus on continuous learning and skill
+            development, tailor your applications to match job requirements, network extensively, consider expanding
+            your job search to different locations, and leverage personal connections and referrals.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> Are there any specific resources
+            or tools available to help me with my job search?
+        </h4>
+        <p><span>A:</span> Yes, there are several resources and tools available to assist you in your job search. These
+            include online job boards, career assessment tools, resume builders, interview preparation websites,
+            professional networking platforms, and career counseling services. Follow the seven step journey to
+            streamline and find your ideal job.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> What are some common mistakes to
+            avoid when applying for jobs?
+        </h4>
+        <p><span>A:</span> Some common mistakes to avoid include submitting generic applications, neglecting to
+            customize your resume and cover letter, failing to research the company before an interview, lacking
+            professionalism in communication, not following up after interviews, and disregarding proper etiquette
+            throughout the job search process.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> How can I make the most out of
+            networking opportunities and build professional connections?
+        </h4>
+        <p><span>A:</span> Making the most of networking opportunities involves attending industry events, joining
+            professional associations, leveraging social media platforms, participating in informational interviews, and
+            cultivating genuine relationships with professionals in your field. Remember to offer value, be authentic,
+            and maintain a professional demeanor.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> What are some effective strategies
+            for preparing and performing well in job interviews?
+        </h4>
+        <p><span>A:</span> Effective strategies for job interviews include researching the company and position,
+            practicing common interview questions, preparing thoughtful answers, dressing professionally, demonstrating
+            confidence, and asking insightful questions about the role and company.
+        </p>
+        <h4 class="faq-head mb-5"> <span>Q:</span> How can I effectively negotiate my
+            salary and benefits during the hiring process?
+        </h4>
+        <p><span>A:</span> To negotiate your salary and benefits effectively, research industry standards and salary
+            ranges, understand the value of your skills and experience, prepare persuasive justifications, be confident
+            in expressing your expectations, and be open to compromise. It's important to approach negotiations
+            professionally and respectfully.
+        </p>
+    </div>
+
+    <div *ngIf="isJobseekerVisible && !helpCenterBlock">
+        <h3 class="section-common-heading mt-40 mb-40 text-maroon text-center">Jobseekers Guide</h3>
+        <figure>
+            <img width="100%" src="{{config.assetsImages+'jobseeker-7-Steps-Master.png'}}">
+        </figure>
+        <div class="steps-card">
+            <figure>
+                <img width="100%" src="{{config.assetsImages+'step-7.png'}}">
+            </figure>
+            <h4 class="faq-head mb-10">
+                <span><img src="{{config.assetsImages+'plus.png'}}"></span>
+                Find curated career professionals by areas of expertise
+            </h4>
+            <p>Explore the BothMatch portal to <a href="javascript:void(0)" [routerLink]="['/match','fromJobSeeker']">match</a> career professionals categorized by their expertise. Choose professionals
+                that align with your career goals. 
+                <br /><br /> <span class="buldimg"><img src="{{config.assetsImages+'bulb.png'}}"></span> Register on the JobRep Network to collaborate
+                with the talent community to find additional insights and resources.</p>
+        </div>
+        <div class="steps-card step-card-6">
+            <figure>
+                <img width="100%" src="{{config.assetsImages+'step-6.png'}}">
+            </figure>
+            <h4 class="faq-head mb-10">
+                <span><img src="{{config.assetsImages+'plus.png'}}"></span>
+                Jobseekers can identify their personal and career needs, consult career professionals and optimize their resume
+            </h4>
+            <p>Evaluate your personal and career needs, considering factors like work-life balance and job satisfaction. Seek guidance from career professionals who can provide tailored advice. Collaborate with them to optimize your resume and incorporate best practices. 
+                <br/><br/> <span class="buldimg"><img src="{{config.assetsImages+'bulb.png'}}"></span> To create a compelling resume, ensure it is well-organized, highlights your relevant skills and experiences, uses concise and clear language, and is tailored to each job application. Focus on showcasing your achievements and quantifiable results. </p>
+        </div>
+        <div class="steps-card">
+            <figure>
+                <img width="100%" src="{{config.assetsImages+'step-5.png'}}">
+            </figure>
+            <h4 class="faq-head mb-10">
+                <span><img src="{{config.assetsImages+'plus.png'}}"></span>
+                Upload your optimized resume and find the ten best matching jobs on BothMatch.com 
+            </h4>
+            <p>Upload your optimized resume to BothMatch.com and use the Curate Match Framework<sup>TM</sup> to find the ten best matching job opportunities based on your skills, qualifications, and preferences. Review the job descriptions and requirements from the matched jobs to ensure they align with your career goals and aspirations.
+                <br/><br/> <span class="buldimg"><img src="{{config.assetsImages+'bulb.png'}}"></span> Jobseekers can now organically match their updated resume with millions of jobs using modern platforms like BothMatch.com</p>
+        </div>
+        <div class="steps-card">
+            <figure>
+                <img width="100%" src="{{config.assetsImages+'step-4.png'}}">
+            </figure>
+            <h4 class="faq-head mb-10">
+                <span><img src="{{config.assetsImages+'plus.png'}}"></span>
+                Research the ten best job matches and identify related recruiters 
+            </h4>
+            <p>Conduct comprehensive research on the ten best job matches, including the companies' background, values, culture, and industry position. Identify and network with the recruiters or hiring managers responsible for those job openings. Gather information about the recruiters to personalize your application and prepare for potential interactions.</p>
+        </div>
+        <div class="steps-card">
+            <figure>
+                <img width="100%" src="{{config.assetsImages+'step-3.png'}}">
+            </figure>
+            <h4 class="faq-head mb-10">
+                <span><img src="{{config.assetsImages+'plus.png'}}"></span>
+                Apply to the preferred companies you identified
+            </h4>
+            <p>Tailor your application for each preferred company, highlighting your relevant skills, experiences, and achievements. Submit your application through the designated channels, following any specific instructions provided by the companies. Keep track of application deadlines and consider following up if necessary.</p>
+        </div>
+        <div class="steps-card">
+            <figure>
+                <img width="100%" src="{{config.assetsImages+'step-2.png'}}">
+            </figure>
+            <h4 class="faq-head mb-10">
+                <span><img src="{{config.assetsImages+'plus.png'}}"></span>
+                Prepare to interview with selected companies
+            </h4>
+            <p>Thoroughly research each company you have applied to, understanding their products, services, industry position, and recent news. Prepare answers to common interview questions and practice them with a career professional or through mock interviews. Develop a list of thoughtful questions to ask the interviewer while demonstrating confidence, interest and engagement.</p>
+        </div>
+        <div class="steps-card mb-40">
+            <figure>
+                <img width="100%" src="{{config.assetsImages+'step-1.png'}}">
+            </figure>
+            <h4 class="faq-head mb-10">
+                <span><img src="{{config.assetsImages+'plus.png'}}"></span>
+                Evaluate job offer/s from matched companies
+            </h4>
+            <p>Evaluate the job offer by considering factors such as salary, benefits, work environment, growth
+                opportunities, and alignment with your long-term career goals. Seek advice from career professionals to
+                help you weigh the pros and cons of the offer. Make an informed decision based on your evaluation and,
+                if necessary, negotiate terms to ensure they align with your expectations and aspirations.</p>
+        </div>
+    </div>
+
+    <div *ngIf="isCommunityVisible && !helpCenterBlock">
+        <div class="community-block-content">
+            <h3 class="section-common-heading mt-40 mb-40 text-maroon text-center">Blog/Community</h3>
+            <a class="mt-30 mb-20 d-block" href="https://jobrep.com/" target="_blank"><img src="{{config.assetsImages+'jobrep-community.png'}}" width="100%"></a>
+
+            <h4>What is the JobRep Network ?</h4>
+            <p>The JobRep Network brings together Graduates, Jobseekers, Candidates, JobReps and Recruiters to the community to facilitate collaboration, help jobseekers find jobs and help professionals achieve their talent objectives - all in one place !
+            </p>
+            <h4>What is the JobRep ?</h4>
+            <p>JobRep is a new human resource identity to standardize multiple candidate support professional specialties under a shared title to increase candidate outreach and highlight professional expertise. The goal is to use the JobRep identity to broadly represent the candidate in the same way the recruiter title represents the employer.
+            </p>
+
+        </div>
+    </div>
+
+    <div class="content-wrap useful-links-block about-tab-tabs">
+        <h2 class="text-center mb-20 mt-10">Support + Contact Us</h2>
+        <ul class="useful-tabs-lists shrink-tab">
+            <li [ngClass]="{'active': aboutTabIndex === 0}" (click)="linksTabChange(0)"><span>Job Help</span></li>
+            <li [ngClass]="{'active': aboutTabIndex === 1}" (click)="linksTabChange(1)"><span>Website Help</span></li>
+        </ul>
+
+        <ng-container *ngIf="aboutTabIndex===0">
+            <figure>
+                <img src="{{config.assetsImages+'tab-about-jobrep.jpg'}}">
+            </figure>
+        </ng-container>
+
+        <ng-container *ngIf="aboutTabIndex===1">
+            <div class="contact-banner">
+                <h1 class="text-center">Contact Us</h1>
+            </div>
+            <div class="aboutus-form mb-40">
+                <form [formGroup]="loginform" (ngSubmit)="submitForm(loginform.value)">
+                    <div class="form-section mt-0">
+                        <div class="input-group">
+                            <input type="text" placeholder="Enter First Name" formControlName="first_name">
+                            <div *ngIf="getControls['first_name'].invalid">
+                                <div *ngIf="(getControls['first_name']['errors']?.['required'] && getControls['first_name']['touched']) || isInvalid"
+                                     class="alert alert-danger">
+                                    First name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Enter Last Name" formControlName="last_name">
+                            <div *ngIf="getControls['last_name'].invalid">
+                                <div *ngIf="(getControls['last_name']['errors']?.['required'] && getControls['last_name']['touched']) || isInvalid"
+                                     class="alert alert-danger">
+                                    Last name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="EmailAddress" placeholder="Enter Email ID" formControlName="email">
+                            <div *ngIf="getControls['email'].invalid">
+                                <div *ngIf="(getControls['email']['errors']?.['required'] && getControls['email']['touched']) || isInvalid"
+                                     class="alert alert-danger">
+                                    Valid email is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <textarea rows="4" placeholder="Comment" name="comment" formControlName="comment"></textarea>
+                            <div *ngIf="getControls['comment'].invalid">
+                                <div *ngIf="(getControls['comment']['errors']?.['required'] && getControls['comment']['touched']) || isInvalid"
+                                     class="alert alert-danger">
+                                    Comment is required.
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="config.isShowCaptcha">
+                            <div class="captcha-btn">
+                                <div class="form-recaptcha-size-new">
+                                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                                    <div *ngIf="getControls['recaptcha'].invalid">
+                                        <div *ngIf="(getControls['recaptcha']['errors']?.['required'] && getControls['recaptcha']['touched']) || isInvalid"
+                                             class="alert alert-danger">
+                                            Captcha is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="text-center mt-30">
+                            <button type="submit" class="theme-sm-button">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="matchVsSearchTab">
+    <h3 class="section-common-heading mt-30 mb-30">Job Matching</h3>
+    <ul class="tab-lists mt-20">
+        <li [ngClass]="{'active': matchingTabIndex === 0}" (click)="showArtificialMatch(0)"><span>Search vs Match</span></li>
+        <li [ngClass]="{'active': matchingTabIndex === 1}" (click)="showArtificialMatch(1)"><span>Artificial Intelligence</span></li>
+    </ul>
+<!--    <ul class="job-matching-tabs mt-35">-->
+<!--        <li (click)="showArtificialMatch(0)" [ngClass]="{'active':matchingTabIndex === 0}">-->
+<!--            <span><img src="{{config.assetsImages+'search-thumbnail.png'}}"></span>-->
+<!--            <h5>Search vs Match</h5>-->
+<!--        </li>-->
+<!--        <li (click)="showArtificialMatch(1)" [ngClass]="{'active':matchingTabIndex === 1}">-->
+<!--            <span><img src="{{config.assetsImages+'artificial-thumbnail.png'}}"></span>-->
+<!--            <h5>Artificial Intelligence</h5>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+    <div *ngIf="isSearchMatchVisible" >
+        <div class="mt-35 search-match-banner">
+            <div>
+                <h1 class="mb-5">Search vs Match</h1>
+                <label>Saving Time, Money and Reducing Stress</label>
+            </div>
+        </div>
+        <h5 class="mb-5 mt-20">Exploring the Evolution of Job Hunting</h5>
+        <p class="text-blue">Before the advent of the internet, the process of job hunting was fundamentally
+            different. The classified sections of local and national newspapers were the primary sources of job listings.
+            People would buy a newspaper and carefully comb through the job postings to find suitable positions. This
+            conventional method of job hunting underwent a dramatic transformation with the rise of the internet in the
+            mid-to-late 90s, and online job searching became the new standard.</p>
+        <h5 class="mt-30 mb-5">Job Searching - The Traditional Approach</h5>
+        <p>Traditionally, job searching meant actively looking for job vacancies across different channels such as job
+            boards and company websites. Job seekers would create and tailor their resume and cover letter for each specific
+            job opening they were interested in. This approach could be time-consuming and sometimes overwhelming, as it
+            required reading and evaluating numerous job descriptions. Determining a good fit based purely on the
+            information in a job advert was often challenging, making the process stressful and inefficient.</p>
+        <h5 class="mt-30 mb-5">Job Matching - The Modern Approach</h5>
+        <p class="modern-approach"><img src="{{config.assetsImages+'plus.png'}}"> Contrastingly, the modern approach, job
+            matching, leverages technology to pair job seekers with relevant
+            opportunities based on their skills, experience, and other attributes. Platforms dedicated to job matching such
+            as BothMatch.com utilize advanced algorithms to pinpoint the most suitable matches between jobseekers and
+            employers.</p>
+        <p class="mt-20 mb-20 modern-approach"><img src="{{config.assetsImages+'plus.png'}}"> Job matching can be likened to
+            having a personal assistant who intimately understands your skills,
+            interests, and career aspirations, and then links you to the job opportunities that best align with these. This
+            method substantially reduces the time and effort traditionally spent on job hunting, as it efficiently filters
+            through innumerable job posts to identify those most applicable to you.</p>
+        <p class="mb-20 modern-approach"><img src="{{config.assetsImages+'plus.png'}}"> In essence, job matching provides a
+            more streamlined and personalized approach compared to
+            traditional job searching. It removes much of the hassle associated with job hunting, making the path to finding
+            your ideal role a lot smoother and more efficient. </p>
+        <p class="save-time">
+            <i><b>Now you have a way to save time, money and reduce stress at BothMatch.com </b></i>
+        </p>
+    </div>
+
+    <div *ngIf="isArtificialVisible">
+        <div class="mt-35 aritificial-match-banner">
+            <div>
+                <h1 class="mb-5">Artificial Intelligence</h1>
+                <label>Saving Time, Money and Reducing Stress</label>
+            </div>
+        </div>
+        <h5 class="mb-5 mt-20">Exploring the Evolution of Job Hunting</h5>
+        <p class="text-blue">Before the advent of the internet, the process of job hunting was fundamentally
+            different. The classified sections of local and national newspapers were the primary sources of job listings.
+            People would buy a newspaper and carefully comb through the job postings to find suitable positions. This
+            conventional method of job hunting underwent a dramatic transformation with the rise of the internet in the
+            mid-to-late 90s, and online job searching became the new standard.</p>
+        <h5 class="mt-30 mb-5">Job Searching - The Traditional Approach</h5>
+        <p>Traditionally, job searching meant actively looking for job vacancies across different channels such as job
+            boards and company websites. Job seekers would create and tailor their resume and cover letter for each specific
+            job opening they were interested in. This approach could be time-consuming and sometimes overwhelming, as it
+            required reading and evaluating numerous job descriptions. Determining a good fit based purely on the
+            information in a job advert was often challenging, making the process stressful and inefficient.</p>
+        <h5 class="mt-30 mb-5">Job Matching - The Modern Approach</h5>
+        <p class="modern-approach"><img src="{{config.assetsImages+'plus.png'}}"> Contrastingly, the modern approach, job
+            matching, leverages technology to pair job seekers with relevant
+            opportunities based on their skills, experience, and other attributes. Platforms dedicated to job matching such
+            as BothMatch.com utilize advanced algorithms to pinpoint the most suitable matches between jobseekers and
+            employers.</p>
+        <p class="mt-20 mb-20 modern-approach"><img src="{{config.assetsImages+'plus.png'}}"> Job matching can be likened to
+            having a personal assistant who intimately understands your skills,
+            interests, and career aspirations, and then links you to the job opportunities that best align with these. This
+            method substantially reduces the time and effort traditionally spent on job hunting, as it efficiently filters
+            through innumerable job posts to identify those most applicable to you.</p>
+        <p class="mb-20 modern-approach"><img src="{{config.assetsImages+'plus.png'}}"> In essence, job matching provides a
+            more streamlined and personalized approach compared to
+            traditional job searching. It removes much of the hassle associated with job hunting, making the path to finding
+            your ideal role a lot smoother and more efficient. </p>
+        <p class="save-time">
+            <i><b>Now you have a way to save time, money and reduce stress at BothMatch.com </b></i>
+        </p>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="pressCornerTab">
+    <div class="mt-35 press-banner">
+        <div>
+            <h1 class="mb-5">Press Corner</h1>
+            <label>News About Our New Modern Solutions</label>
+        </div>
+    </div>
+
+<!--    <h3 class="section-common-heading mt-30 mb-20">Press Corner</h3>-->
+<!--    <div class="press-corner-block">-->
+<!--        <figure>-->
+<!--            <img src="{{config.assetsImages+'press-corner-thumbnail-bg.png'}}" width="100%">-->
+<!--        </figure>-->
+<!--        <div class="press-corner-detail">-->
+<!--            <h4>Jun 06, 2023 VIA CHEDDAR </h4>-->
+<!--            <h3>Microsoft Teams: The Productivity Swiss Army Knife</h3>-->
+<!--            <p>Join Tecnologia and Ingram Micro to explore how Teams can enable better hybrid work.</p>-->
+<!--            <span>Read More</span>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="press-corner-slider mt-30">
+        <owl-carousel-o [options]="customOptions">
+            <ng-container>
+                <ng-template carouselSlide>
+                    <div class="press-corner-card">
+                        <figure>
+                            <img src="{{config.assetsImages+'press-corner-thumbnail-sm.png'}}" width="100%">
+                        </figure>
+                        <div class="press-corner-detail">
+                            <h4>Jun 06, 2023 VIA CHEDDAR </h4>
+                            <h3>Microsoft Teams: The Productivity Swiss Army Knife</h3>
+                            <p>Join Tecnologia and Ingram Micro to explore how Teams can enable better hybrid work.</p>
+                            <span>Read More</span>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="press-corner-card">
+                        <figure>
+                            <img src="{{config.assetsImages+'press-corner-thumbnail-sm.png'}}" width="100%">
+                        </figure>
+                        <div class="press-corner-detail">
+                            <h4>April 06, 2023 VIA CHEDDAR </h4>
+                            <h3>Microsoft Teams: The Productivity Swiss Army Knife</h3>
+                            <p>Join Tecnologia and Ingram Micro to explore how Teams can enable better hybrid work.</p>
+                            <span>Read More</span>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="press-corner-card">
+                        <figure>
+                            <img src="{{config.assetsImages+'press-corner-thumbnail-sm.png'}}" width="100%">
+                        </figure>
+                        <div class="press-corner-detail">
+                            <h4>August 06, 2023 VIA CHEDDAR </h4>
+                            <h3>Microsoft Teams: The Productivity Swiss Army Knife</h3>
+                            <p>Join Tecnologia and Ingram Micro to explore how Teams can enable better hybrid work.</p>
+                            <span>Read More</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+
+    <h3 class="section-common-heading mt-35 mb-20">Latest Event</h3>
+    <ul class="press-corner-lists mb-40">
+        <li>
+            <figure><img src="{{config.assetsImages+'press-dummy-1.png'}}"></figure>
+            <div class="ml-15">
+                <small>May 30, 2019</small>
+                <p>Lorem Ipsum is simply dummy text of the printing
+                    <label class="d-none" #readMoreContent_1>and typesetting industry.</label>
+                    <span class="d-block">Read More</span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <figure><img src="{{config.assetsImages+'press-dummy-2.png'}}"></figure>
+            <div class="ml-15">
+                <small>May 30, 2019</small>
+                <p>Lorem Ipsum is simply dummy text of the printing
+                    <label class="d-none" #readMoreContent_2>and typesetting industry.</label>
+                    <span class="d-block">Read More</span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <figure><img src="{{config.assetsImages+'press-dummy-1.png'}}"></figure>
+            <div class="ml-15">
+                <small>May 30, 2019</small>
+                <p>Lorem Ipsum is simply dummy text of the printing
+                    <label class="d-none" #readMoreContent_3>and typesetting industry.</label>
+                    <span class="d-block">Read More</span>
+                </p>
+            </div>
+        </li>
+    </ul>
+    <h3 class="section-common-heading mt-30 mb-20">Past Event</h3>
+    <ul class="press-corner-lists mb-40">
+        <li>
+            <figure><img src="{{config.assetsImages+'press-dummy-1.png'}}"></figure>
+            <div class="ml-15">
+                <small>May 30, 2019</small>
+                <p>Lorem Ipsum is simply dummy text of the printing
+                    <label class="d-none" #readMoreContent_1>and typesetting industry.</label>
+                    <span class="d-block">Read More</span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <figure><img src="{{config.assetsImages+'press-dummy-2.png'}}"></figure>
+            <div class="ml-15">
+                <small>May 30, 2019</small>
+                <p>Lorem Ipsum is simply dummy text of the printing
+                    <label class="d-none" #readMoreContent_2>and typesetting industry.</label>
+                    <span class="d-block">Read More</span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <figure><img src="{{config.assetsImages+'press-dummy-1.png'}}"></figure>
+            <div class="ml-15">
+                <small>May 30, 2019</small>
+                <p>Lorem Ipsum is simply dummy text of the printing
+                    <label class="d-none" #readMoreContent_3>and typesetting industry.</label>
+                    <span class="d-block">Read More</span>
+                </p>
+            </div>
+        </li>
+    </ul>
+</ng-container>
+
+<ng-container *ngIf="privacyPolicyTab">
+    <div class="mt-35 privacy-banner">
+        <div>
+            <h1 class="mb-5">Privacy Policy</h1>
+            <label>How Your Information is Processed</label>
+        </div>
+    </div>
+    <iframe style="border: 0;width: 100%;height:1500px;margin: 30px 0;"
+        src="https://app.termly.io/document/privacy-policy/e61cbed8-4bae-454a-91a0-31568d6abc20"></iframe>
+</ng-container>
+
+<ng-container *ngIf="termsConditionsTab">
+    <div class="mt-35 terms-conditions-banner">
+        <div>
+            <h1 class="mb-5">Terms & Conditions</h1>
+            <label>Legal Information Regarding This Website</label>
+        </div>
+    </div>
+    <iframe style="border: 0;width: 100%;height:1500px;margin: 30px 0;"
+        src="https://app.termly.io/document/terms-of-service/6a905c40-1756-4a52-bdfa-cc5793e1170f"></iframe>
+
+</ng-container>

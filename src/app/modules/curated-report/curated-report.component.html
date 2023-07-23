@@ -1,0 +1,122 @@
+<app-header-slider></app-header-slider>
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<div class="steps mt-25">
+    <span>STEP  {{this.currentStep}}/{{this.maxStep}}</span>
+    <h2>{{this.contentHeading}}</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value width{{this.progress}}"></div>
+</div>
+<div class="form-section">
+    <form class="px-15">
+        <div class="select-action" *ngIf="this.searchType!=='free'">
+<!--            <p class="selectcheckbox">Select <img src="assets/images/checkbox.svg" alt="checkbox"> number for job details.</p>-->
+            <p class="selectcheckbox">Select <span>number</span> for job details.</p>
+            <ul *ngIf="this.showDownloadPdfBtn" class="print-download">
+                <li (click)="printJobs('htmlData')">
+                    <!-- <img src="{{config.assetsImages+'material-symbols_print.svg'}}"> -->
+                    <!-- <img src="{{config.assetsImages+'printing.png'}}"> -->
+                    <i class="fa-solid fa-print"></i>
+                </li>
+                <li (click)="printJobs('htmlData')">
+                    <!-- <img src="{{config.assetsImages+'material-symbols_download.svg'}}"> -->
+                    <!-- <img src="{{config.assetsImages+'download.png'}}"> -->
+                    <i class="fa-solid fa-download"></i>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="profile-matches-list  list-group-flush vert-scrollable-150" id="htmlData" >
+<!--            <div class="line-loader">-->
+<!--                <progress class="pure-material-progress-linear"></progress>-->
+<!--                <span>Please Wait</span>-->
+<!--            </div>-->
+            <div class="loading-bar" *ngIf="this.isLoader">
+                <span class="loader loader-quart"></span>
+                <span class="loading-text">Please Wait...</span>
+            </div>
+
+            <ng-container *ngFor="let n of matchList; let i=index">
+                <li (click)="openJobUrl(n.position_url, this.searchType, 'card', n.position_title, n.department_name, i+1, n.id,'manual')" *ngIf="i<10">
+                    <fieldset>
+                        <legend>{{n.match_percent}} Match</legend>
+                        <div class="job-detail-block">
+                            <div class="select-language" *ngIf="this.searchType ==='free'" (click)="openJobUrl(n.position_url, this.searchType, 'card', n.position_title, n.department_name, i+1, n.id,'manual')">
+                                <label>
+<!--                                    <input class="styled-checkbox"  type="checkbox" [checked]="i==0" >-->
+<!--                                    <a [routerLink]="[n.position_url]"> {{n.position_title}} </a>-->
+                                    <ng-container *ngIf="config.environmentSetup === 'production'">
+                                        <span>{{i+1}}</span>{{n.position_title}}
+                                    </ng-container>
+                                    <ng-container *ngIf="config.environmentSetup !== 'production'">
+                                        <span>{{i+1}}</span>{{n.Job_Title}}
+                                    </ng-container>
+                                </label>
+                                <img  src="{{config.assetsImages+'dummy-company.svg'}}">
+                            </div>
+                            <div class="select-language" *ngIf="this.searchType!=='free'">
+                                <label>
+                                    <span>{{i+1}}</span>
+<!--                                    <input class="styled-checkbox" type="radio" (change)="onChange($event, n)" name="radio" [checked]="i==0">-->
+                                    <ng-container *ngIf="config.environmentSetup === 'production'">
+                                        <a  [routerLink]="['/curated-report']">{{n.position_title}}</a>
+                                    </ng-container>
+                                    <ng-container *ngIf="config.environmentSetup !== 'production'">
+                                        <a  [routerLink]="['/curated-report']">{{n.Job_Title}}</a>
+                                    </ng-container>
+                                </label>
+                                <img  src="{{config.assetsImages+'dummy-company.svg'}}">
+                            </div>
+
+                            <div class="job-des mt-10 mb-10">
+                                <h5>{{n.organization_name}}</h5>
+                                <ng-container *ngIf="config.environmentSetup === 'production'">
+                                    <h5>{{n.department_name}}</h5>
+                                </ng-container>
+                                <ng-container *ngIf="config.environmentSetup !== 'production'">
+                                    <h5>{{n.Department}}</h5>
+                                </ng-container>
+                            </div>
+                            <div class="job-des">
+                                <label>Position Start Date</label>
+                                <label>Position End Date</label>
+                            </div>
+                            <div class="job-des">
+                                <span>{{n.position_start_date}}</span>
+                                <span>{{n.position_end_date}}</span>
+                            </div>
+                            <div class="job-des mt-10">
+                                <label>Publication Start Date</label>
+                                <label>Application Close Date</label>
+                            </div>
+                            <div class="job-des">
+                                <span>{{n.publication_start_date}}</span>
+                                <span>{{n.application_close_date}}</span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </li>
+            </ng-container>
+        </ul>
+    </form>
+    <div class="button-group">
+        <button type="button" class="btnblue" [routerLink]="['/additional-input']">Previous</button>
+
+<!--        <ng-container *ngIf="this.searchType == 'free' ">-->
+<!--            <button type="button" class="btnpurple" [routerLink]="['/submit-apply/1']">Next</button>-->
+<!--        </ng-container>-->
+
+        <ng-container *ngIf="this.searchType == 'freeGovt' || this.searchType == 'free' ">
+            <ng-container *ngFor="let n of matchList; let i=index">
+                <button type="button" class="btnpurple" (click)="openJobUrl(n.position_url, this.searchType, 'card', n.position_title, n.department_name, i+1, n.id, 'manual')" *ngIf="!nextButton && i==0"><div class="loading-bar" *ngIf="this.isButtonLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div><span *ngIf="!this.isButtonLoader">Next</span></button>
+            </ng-container>
+
+                <button type="button" class="btnpurple" (click)="openJobUrl(this.jobUrl, this.searchType, 'url', '','','', '','manual')" *ngIf="nextButton">
+                    <div class="loading-bar" *ngIf="this.isButtonLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div>
+                    <span *ngIf="!this.isButtonLoader">Next</span>
+                </button>
+
+        </ng-container>
+    </div>
+</div>

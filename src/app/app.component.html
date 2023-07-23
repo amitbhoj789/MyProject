@@ -1,0 +1,28 @@
+<app-header></app-header>
+    <div class="wrapper">
+        <router-outlet></router-outlet>
+    </div>
+<app-footer></app-footer>
+
+<!------------------- Visit Popup Start ---------------------->
+
+<div class="visit-popup-card" *ngIf="this.config.isShowVisitorPassword && !this.matchPassword">
+    <div class="visit-popup-content">
+        <h1>Enter the password to visit our website</h1>
+        <form [formGroup]="standardCommonForm" #standardCommonNgForm="ngForm">
+<!--            <div class="invalid-pw" *ngIf="this.invalidPass">Enter a valid password</div>-->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" [formControlName]="'password'">
+<!--                <div class="mat-error" *ngIf="standardCommonForm.controls['password'].errors?.['required']">-->
+<!--                    Password is required-->
+<!--                </div>-->
+                <div class="mat-error" *ngIf="this.invalidPass">Enter a valid password</div>
+            </div>
+            <button class="button-purple" (click)="onSubmit()">Submit</button>
+        </form>
+        <span class="close-popup" (click)="onClose()"><i class="fa-solid fa-xmark"></i></span>
+    </div>
+</div>
+
+<!------------------- Visit Popup End ---------------------->

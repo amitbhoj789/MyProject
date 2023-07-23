@@ -1,0 +1,41 @@
+.button-group button.btnblue, .button-group button.btnpurple {
+    cursor: pointer;
+}
+
+.captcha-btn {
+    position: relative;
+}
+
+.img-edit {
+    cursor: pointer;
+}
+
+.resend-otp a {
+    text-decoration: none;
+}
+
+.resend-otp .loading-bar {
+    display: inline-block;
+}
+
+.resend-otp .loading-bar .loader {
+    height: 15px;
+    width: 15px;
+}
+
+.resend-otp .loading-bar span.loading-text {
+    font-size: 13px;
+}
+
+.progressbar .progress-value.width66 {
+    width: 66.66%;
+}
+
+.progressbar .progress-value.width33 {
+    width: 33.33%;
+}
+
+// ::ng-deep .volume-booster-wrapper + div{
+//     top: auto!important;
+//     bottom: 90px;
+// }

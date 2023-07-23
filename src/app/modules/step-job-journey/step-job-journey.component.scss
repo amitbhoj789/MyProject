@@ -1,0 +1,58 @@
+.section-common-heading {
+    font-weight: 700;
+}
+.steps-card{
+    background: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(0, 74, 198, 0.13);
+    border-radius: 8px;
+    padding: 35px 12px 15px;
+    margin-top: 70px;
+    position: relative;
+    p{
+        letter-spacing: 0.02em;
+        color: #535353;
+        font-size: 15px;
+        span.buldimg {
+            top: 4px;
+            position: relative;
+            display: inline-block;
+            img{
+                width: 26px;
+            }
+        }
+        a{
+            font-weight: 500;
+            color: #00BDCD;
+        }
+    }
+    figure{
+        position: absolute;
+        width: 100%;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        img{
+            height: 43px;
+            object-fit: contain;
+        }
+    }
+    .faq-head{ 
+        color: #000;
+        position: relative;
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        span{ 
+            margin-right: 4px;
+            img {
+                width: 15px;
+            }
+        }
+    }
+}
+
+::ng-deep{
+    .wrapper .curate-career {
+        background-color: #F5F5F5;
+    }
+}

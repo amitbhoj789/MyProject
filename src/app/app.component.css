@@ -1,0 +1,31 @@
+:host ::ng-deep .wrapper .form-recaptcha-size-new {
+  transform-origin: unset;
+  -webkit-transform-origin: unset;
+}
+:host ::ng-deep ngx-recaptcha2 {
+  text-align: center;
+}
+:host ::ng-deep ngx-recaptcha2 > div > div > div {
+  width: 100% !important;
+}
+:host ::ng-deep .apply-box .apply-content {
+  min-height: 730px;
+}
+
+.invalid-pw {
+  text-align: center;
+  color: red;
+}
+
+.mat-error {
+  color: red;
+  margin-top: 5px;
+}
+
+.visit-popup-card .visit-popup-content .form-group input {
+  margin-bottom: 0;
+}
+
+.visit-popup-card .visit-popup-content .button-purple {
+  margin-top: 35px;
+}/*# sourceMappingURL=app.component.css.map */

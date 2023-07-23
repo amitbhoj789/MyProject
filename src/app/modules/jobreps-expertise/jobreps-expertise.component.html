@@ -1,0 +1,143 @@
+<app-header-slider></app-header-slider>
+<div class="jobreps-banner">
+    <h2 class="section-common-heading  text-center">CAREER PROFESSIONALS</h2>
+    <h3 class="section-sub-common-heading text-center">Expertise Registration</h3>
+    <div class="steps mt-25">
+        <span>STEP 3/3</span>
+        <h2>Expertise Level Update</h2>
+    </div>
+    <div class="progressbar">
+        <div class="progress-value"></div>
+    </div>
+</div>
+<form>
+    <div class="form-section jobreps-form  mx-0 jobreps-expertise-update">
+        <h4>Services <span>Expertise Level</span></h4>
+        <div class="text-center rank-expertise mx-10 mt-10">
+            <img alt=""  src="{{config.assetsImages+'lightbulb.png'}}">
+            <p>Rank expertise level, 1 is lowest and 5 is highest.</p>
+        </div>
+
+        <!------------- new table ---------------->
+        <div class="keywords-table-block services-expertise-table">
+            <div class="rank-header">
+                <label>&nbsp;</label>
+                <label>Not Ranked</label>
+                <label>1</label>
+                <label>2</label>
+                <label>3</label>
+                <label>4</label>
+                <label>5</label>
+            </div>
+            <ul class="keyword-table-lists">
+                <ng-container *ngIf="this.isDataLoader">
+                    <tr>
+                        <td colspan="7">
+                            <div class="loading-bar">
+                                <span class="loader loader-quart"></span>
+                                <span class="loading-text">Please Wait...</span>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <ng-container *ngIf="fun.isLoggedIn">
+                    <ng-container *ngFor="let row of allExpertise; index as i">
+                        <li>
+                            <p>{{row.service_name}}</p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input disabled type="radio" name="expertise_{{i}}" (change)="expertiseChange(row, 0)"  [checked]="allExpertise[i].expertise_level == 0">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" (change)="expertiseChange(row, 1)" name="expertise_{{i}}" [checked]="allExpertise[i].expertise_level == 1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" (change)="expertiseChange(row, 2)" name="expertise_{{i}}" [checked]="allExpertise[i].expertise_level == 2">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" (change)="expertiseChange(row, 3)" name="expertise_{{i}}" [checked]="allExpertise[i].expertise_level == 3">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" (change)="expertiseChange(row, 4)" name="expertise_{{i}}" [checked]="allExpertise[i].expertise_level == 4">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" (change)="expertiseChange(row, 5)" name="expertise_{{i}}" [checked]="allExpertise[i].expertise_level == 5">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                        </li>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!fun.isLoggedIn">
+                    <ng-container *ngFor="let expData of allExpertiseDefult; index as i">
+                        <li>
+                            <p>{{expData.service_name}}</p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" [disabled]="true" [checked]="1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" [disabled]="true" name="0" [checked]="0">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" [disabled]="true" name="0" [checked]="0">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" [disabled]="true" name="0" [checked]="0">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" [disabled]="true" name="0" [checked]="0">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                            <p>
+                                <label class="custom-radio">
+                                    <input type="radio" [disabled]="true" name="0" [checked]="0">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                        </li>
+                    </ng-container>
+                </ng-container>
+            </ul>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btnblue"  [routerLink]="['/profile-update']">Previous</button>
+            <button type="submit" class="btnpurple" [disabled]="!fun.isLoggedIn" (click)="updateExpertise()"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">Next</span> </button>
+        </div>
+    </div>
+    <div class="approval-date mt-20 mb-30 mx-15 pt-15 pb-15">
+        <h5 class="mb-0">EXPERTISE LAST UPDATED</h5>
+        <label>{{this.config.dateConvertDBtoUI(this.lastDate,'date','d-MM-y','-')}}</label>
+    </div>
+</form>
+<app-footer-curate-career></app-footer-curate-career>
+<figure><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>

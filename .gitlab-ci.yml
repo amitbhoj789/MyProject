@@ -1,0 +1,52 @@
+install_dependencies:
+  image: node:16-alpine
+  stage: .pre
+  script:
+    - npm install
+  only:
+    - master
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+
+build stage:
+  image: node:16-alpine
+  stage: build
+  script:
+    - npm link @angular/cli@15.2.2
+    - npm run build
+  only:
+    - master
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+    policy: pull
+
+deploy to s3:
+  stage: deploy
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  only:
+    - master
+  script:
+    - aws s3 sync --delete dist/mobile_both_match/ s3://$S3_BUCKET
+
+invalidate cloudfront cache:
+  stage: .post
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  only:
+    - master
+  script:
+    - aws cloudfront create-invalidation --distribution-id E3TBVPOTRIVK78 --path "/*"

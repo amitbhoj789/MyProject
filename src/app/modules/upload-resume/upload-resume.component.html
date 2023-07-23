@@ -1,0 +1,35 @@
+<app-header-slider></app-header-slider>
+<!-- <h1 class="heading">Both Match</h1> -->
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<div class="steps mt-25">
+    <span>STEP  {{this.currentStep}}/{{this.maxStep}}</span>
+    <h2>Start Job Matching</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value width{{this.progress}}"></div>
+</div>
+<div class="resume" [ngClass]="{'government-resume': this.searchType =='freeGovt'}">
+    <p class="text-center">View curated matching steps 1-{{this.maxStep}}</p>
+<!--    <p class="text-center">For a quick overview of curated matching, view Steps 1-{{this.maxStep}}</p>-->
+    <div class="resume-box mt-10">
+        <img alt="" *ngIf="isfileUploading" src="{{config.assetsImages+'loading.gif'}}" class="img-uploading">
+        <img *ngIf="!isfileUploading" src="{{config.assetsImages+'resume-profile.svg'}}" alt="">
+        <p class="mb-0" *ngIf="this.searchTypeParams !== 'free'">Drag & Drop Your Resume Here</p>
+        <p *ngIf="this.searchTypeParams === 'free'">(no resume upload needed for demo)</p>
+        <p class="or" *ngIf="this.searchTypeParams !== 'free'">or</p>
+
+        <div class="upload-btn" *ngIf="this.searchTypeParams !== 'free'">
+            Upload Resume
+            <input type="file" accept=".pdf" id="fileid" value="name" multiple (change)="fileUpload($event)">
+        </div>
+
+        <div class="upload-btn" *ngIf="this.searchTypeParams === 'free'" (click)="fileUploadDemo()">
+            <button type="button" class="btnblue btn-reset">{{this.isfileUploadingText}}</button>
+        </div>
+        <p class="extension" *ngIf="this.searchTypeParams !== 'free'">(.pdf, .doc, .docx, rtf)</p>
+    </div>
+</div>
+<div class="button-group">
+    <button type="submit" class="btnblue" [routerLink]="['/home']"> <div class="loading-bar" *ngIf="this.isLoader"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div> <span *ngIf="!this.isLoader">Previous</span> </button>
+</div>

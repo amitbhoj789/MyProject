@@ -1,0 +1,122 @@
+<main>
+    <div class="profile-detail-body">
+        <div class="pro-action  mb-25">
+            <h2 class="block-heading">Profile Details</h2>
+            <select (change)="updateStatus($event, userDetails.id)">
+                <option>Action</option>
+                <option [selected]="userDetails?.user_status=='Approved'" value="Approved">Approve</option>
+                <option [selected]="userDetails?.user_status=='Reject'" value="Reject">Reject</option>
+                <option [selected]="userDetails?.user_status=='Suspend'" value="Suspend">Suspend</option>
+                <option [selected]="userDetails?.user_status=='Deactivate'" value="Deactivate">Deactivate</option>
+            </select>
+        </div>
+        <div class="profile-detail-card">
+            <small class="list-count">1</small>
+            <div class="profile-detail-block mb-30">
+                <ng-container *ngIf="userDetails.image!==null">
+                    <span><img alt="" src="{{config.imageStoragePath()+userDetails.image}}"></span>
+                </ng-container>
+                <ng-container *ngIf="userDetails.image===null">
+                    <span><img alt="" src="{{config.assetsImages+'dummy-user.png'}}"></span>
+                </ng-container>
+
+                <div class="profile-detail">
+                    <h4>{{userDetails ? userDetails.name : 'Marry Smith'}}</h4>
+                    <h5>{{userDetails ? userDetails.total_years_in_career_service : ''}}</h5>
+
+                    <ng-container *ngIf="userDetails.email">
+                        <a href="mailto:{{userDetails ? userDetails.email : ''}}">{{userDetails ? userDetails.email : ''}}</a>
+                    </ng-container>
+                    <ng-container *ngIf="!userDetails.email">
+                        <p>-</p>
+                    </ng-container>
+
+                    <span>{{userDetails ? userDetails.user_status : '-'}}</span>
+                </div>
+            </div>
+            <h6>Profile Link</h6>
+            <ng-container *ngIf="userDetails.linkedin_link">
+                <a href="www.linkedin.com/in/marysmith" target="_blank">{{userDetails ? userDetails.linkedin_link : ''}}</a>
+            </ng-container>
+            <ng-container *ngIf="!userDetails.linkedin_link">
+                <p>-</p>
+            </ng-container>
+
+
+
+            <h6 class="mt-20">Profile Header</h6>
+            <ng-container *ngIf="userDetails.profile_header">
+                <p>{{userDetails?.profile_header}}</p>
+            </ng-container>
+            <ng-container *ngIf="!userDetails.profile_header">
+                <p>-</p>
+            </ng-container>
+
+            <h5 class="mt-20">Top Three Specialities</h5>
+            <ng-container *ngIf="userDetails.top3_specialites">
+                <p>Career Transition</p>
+                <p>Certification Assessment</p>
+                <p>Resume Development</p>
+            </ng-container>
+            <ng-container *ngIf="!userDetails.top3_specialites">
+                <p>-</p>
+            </ng-container>
+
+            <h5 class="mt-20">Service Summary</h5>
+            <ng-container *ngIf="userDetails.service_summary">
+                <p>{{userDetails ? userDetails.service_summary : ''}}</p>
+            </ng-container>
+            <ng-container *ngIf="!userDetails.service_summary">
+                <p>-</p>
+            </ng-container>
+
+
+            <h5 class="mt-20">City</h5>
+            <ng-container *ngIf="userDetails.city">
+                <label>{{userDetails ? userDetails.city : ''}}</label>
+            </ng-container>
+            <ng-container *ngIf="!userDetails.city">
+                <label>-</label>
+            </ng-container>
+
+
+            <h5 class="mt-20">State</h5>
+            <ng-container *ngIf="userDetails.state">
+                <label>{{userDetails ? userDetails.state : ''}}</label>
+            </ng-container>
+            <ng-container *ngIf="!userDetails.state">
+                <label>-</label>
+            </ng-container>
+
+            <h5 class="mt-20">Country</h5>
+            <ng-container *ngIf="userDetails.country">
+                <label>{{userDetails ? userDetails.country : ''}}</label>
+            </ng-container>
+            <ng-container *ngIf="!userDetails.country">
+                <label>-</label>
+            </ng-container>
+
+            <div class="approval-updated mt-30">
+                <div class="mr-5">
+                    <h4>Approval Date</h4>
+                    <ng-container *ngIf="userDetails.approved_at">
+                        <label>{{this.config.dateConvertDBtoUI(userDetails.approved_at,'date','d-MM-y','-')}}</label>
+                    </ng-container>
+
+                    <ng-container *ngIf="!userDetails.approved_at">
+                        <label>-</label>
+                    </ng-container>
+                </div>
+                <div class="ml-5">
+                    <h4>Last Updated</h4>
+                    <label>{{this.config.dateConvertDBtoUI(userDetails.updated_at,'date','d-MM-y','-')}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<figure class="footer-figure"><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>
+<div class="button-group">
+    <button type="submit" class="btnblue" [routerLink]="['/admin/dashboard']">Previous</button>
+    <button type="submit" class="btnpurple">Next</button>
+</div>

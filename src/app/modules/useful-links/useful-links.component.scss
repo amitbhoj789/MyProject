@@ -1,0 +1,41 @@
+::ng-deep {
+
+    app-footer-curate-career.userful-links .curate-career {
+        background-color: #F5F5F5 ;
+    }
+
+    .wrapper .useful-links-block .privacy-banner {
+        background: url(/assets/images/breadcrumb-privacy.png) no-repeat;
+        background-size: cover;
+    }
+
+    .wrapper .useful-links-block .terms-conditions-banner {
+        background: url(/assets/images/breadcrumb-terms-condition.png) no-repeat;
+        background-size: cover;
+    }
+
+    .wrapper .useful-links-block .press-banner {
+        background: url(/assets/images/breadcrumb-press-corner.png) no-repeat;
+        background-size: cover;
+    }
+
+    .wrapper .useful-links-block .privacy-banner, .wrapper .useful-links-block .terms-conditions-banner, .wrapper .useful-links-block .press-banner {
+        padding: 0 15px;
+        height: 156px;
+        display: flex;
+        align-items: center;
+        margin: 0 -15px;
+    }
+
+    .wrapper .useful-links-block .privacy-banner h1, .wrapper .useful-links-block .terms-conditions-banner h1, .wrapper .useful-links-block .press-banner h1 {
+        font-weight: 700;
+        font-size: 26px;
+        color: #fff;
+    }
+    .wrapper .useful-links-block .privacy-banner label, .wrapper .useful-links-block .terms-conditions-banner label, .wrapper .useful-links-block .press-banner label {
+        font-weight: 700;
+        font-size: 16px;
+        color: #fff;
+    }
+    
+}

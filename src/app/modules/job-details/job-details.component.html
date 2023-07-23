@@ -1,0 +1,50 @@
+<div class="px-0">
+    <div class="apply-top mb-20">
+        <span>{{this.jobDetails.match_percent}}% Match</span>
+        <ul class="print-download"  *ngIf="this.searchType!=='free'">
+            <li (click)="printJobs('htmlData')">
+                <!-- <img src="{{config.assetsImages+'material-symbols_print.svg'}}"> -->
+                <!-- <img src="{{config.assetsImages+'printing.png'}}"> -->
+                <i class="fa-solid fa-print"></i>
+            </li>
+            <li (click)="printJobs('htmlData')">
+                <!-- <img src="{{config.assetsImages+'material-symbols_download.svg'}}"> -->
+                <!-- <img src="{{config.assetsImages+'download.png'}}"> -->
+                <i class="fa-solid fa-download"></i>
+            </li>
+        </ul>
+    </div>
+    <img *ngIf="this.jobDetails && this.jobDetails.company_logo" alt="" src="{{config.assetsImages+this.jobDetails.company_logo}}">
+    <div class="vacancy-detail">
+        <span class="vacancy-count">{{this.jobDetails.job_number}}</span>
+        <h4 *ngIf="this.jobDetails.job_title">{{this.jobDetails.job_title}}</h4>
+        <h5 *ngIf="this.jobDetails.company_name">{{this.jobDetails.company_name}}</h5>
+        <h6 *ngIf="this.jobDetails.department">{{this.jobDetails.department}}</h6>
+    </div>
+</div>
+<ul class="tab-lists apply-tab" id="print_area">
+    <li class="active"><span>Job Details</span></li>
+<!--    <li><span>About Employer</span></li>-->
+<!--    <li><span>Reviews</span></li>-->
+    <!-- <li><span>Benefits</span></li> -->
+</ul>
+<div class="apply-content">
+    <div class="job-detail">
+        <p *ngIf="this.jobDetails.experience"><img  src="{{config.assetsImages+'suitcase.svg'}}"> {{this.jobDetails.experience}}</p>
+        <p *ngIf="this.jobDetails.opening"><img  src="{{config.assetsImages+'carbon_user-multiple.svg'}}"> {{this.jobDetails.opening}}</p>
+        <p *ngIf="this.jobDetails.location"><img  src="{{config.assetsImages+'mdi_location.svg'}}"> {{this.jobDetails.location}}</p>
+        <p *ngIf="this.jobDetails.max_salary">
+<!--             <img src="{{config.assetsImages+'currency-dollar.svg'}}">-->
+            ${{this.jobDetails.min_salary}} - ${{this.jobDetails.max_salary}}
+        </p>
+    </div>
+    <div class="job-description">
+        <h6 (click)="readMoreContent.className === 'd-block' ? readMoreContent.className = 'd-none' : readMoreContent.className = 'd-block'" *ngIf="readMoreContent.className">Job Description <img src="{{config.assetsImages+'down-down.svg'}}" alt=""></h6>
+        <ng-container>
+            <p class="d-block" #readMoreContent>
+                <span *ngIf="this.jobDetails.job_description==='Unable to find qualification required'">Detailed information currently not available</span>
+                <span *ngIf="this.jobDetails.job_description!=='Unable to find qualification required'">{{this.jobDetails.job_description}}</span>
+            </p>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+.button-group button.btnblue, .button-group button.btnpurple {
+    cursor: pointer;
+}
+
+.progressbar .progress-value.width80 {
+    width: 80%;
+}
+
+
+::ng-deep {
+    //Open close style
+    .multiselect-item-checkbox input[type=checkbox]:checked + div:before {
+        border: 1px solid #34A853!important;
+        border-radius: 2px!important;
+    }
+
+    .multiselect-item-checkbox input[type=checkbox] + div:before {
+        border: 1px solid #afafaf!important;
+    }
+
+    .multiselect-item-checkbox input[type=checkbox] + div:after {
+        margin-top: -5px!important;
+        left: 3px!important;
+    }
+
+    .multiselect-item-checkbox input[type=checkbox]:checked + div:before {
+        background: #34A853!important;
+    }
+    .dropdown-multiselect__caret{display: none!important;}
+    .dropdown-list{top: calc(100% + 40px);}
+
+    .selected-item span{font-size: 15px;}
+    // .multiselect-dropdown .dropdown-btn .selected-item-container{flex: auto;display:block!important;}
+    // .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item{float:none!important;display:flex;margin-left: 4px;justify-content: space-between;}
+    // .multiselect-dropdown .dropdown-btn{display: flex!important;padding: 6px 6px!important;}
+
+}
+
+.color-sky {
+    color: #00BDCD;
+}
+
+.specialization-dropdown{
+    position: relative;
+    margin-bottom: 45px!important;
+    padding-bottom: 10px;
+    .dropdown-open-close {
+        background: #EB4335;
+        border-radius: 2px;
+        color: #fff;
+        padding: 4px 26px 4px 10px;
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        line-height: 18px;
+        img{
+            &.btn-pointer{
+                width: 32px;
+                position: absolute;
+                bottom: 0px;
+                left: -40px;
+            }
+        }
+        &::after{
+            border: solid #fff;
+            border-width: 0 2px 2px 0;
+            width: 6px;
+            height: 6px;
+            content: '';
+            position: absolute;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            right: 10px;
+            top: 8px;
+        }
+        &.btn-toggle-close{
+            &::after{
+                transform: rotate(-135deg);
+                -webkit-transform: rotate(-135deg);
+                top: 12px;
+            }
+        }
+    }
+    &::before{
+        content: '';
+        border: 1px solid #ddd;
+        width: 100%;
+        height: 100%;
+        top: 25px;
+        left: 0;
+        position: absolute;
+        border-radius: 4px;
+    }
+}
+
+.btn-toggle-close{
+    display: none;
+}
+.openDropdown ~ .btn-toggle-close{
+    display: block;
+}
+.openDropdown + .btn-toggle-open{
+    display: none;
+}

@@ -1,0 +1,44 @@
+<app-header-slider></app-header-slider>
+<section class="our-mission-banner">
+    <figure><img alt="" src="{{config.assetsImages+'mission-curate-match-banner.png'}}" width="100%"></figure>
+</section>
+<section class="ourmission-content-section pb-0">
+    <div class="mb-35">
+        <h3 class="section-spacel-heading text-center">Our Mission</h3>
+        <h4 class="section-sub-common-heading text-center mb-30">WHY BOTH MATCH?</h4>
+        <h5 class="section-common-heading">Revamped Shorter Job Journey:</h5>
+        <p>The existing process of job hunting often demands excessive hours and months of effort from jobseekers. Throughout this grueling period, they face frequent rejection, often get ignored, and endure the financial loss of potential wages, all while experiencing heightened stress levels.</p>
+
+        <p>Both Match<sup>TM</sup>, powered by the Curate Match<sup>TM</sup> Framework, aims to revolutionize the job-seeking experience by helping individuals save time, money, and reduce stress.</p>
+
+        <p>Now, jobseekers have the option to instantly upload their optimized resume, specify personal preferences, and explore ten carefully curated job matches. They can then network and apply for jobs based on their final selection. Although guarantees cannot be made, these organically matched job opportunities significantly enhance the likelihood of finding an ideal employer and expedite the job search process.</p>
+
+        <p>Both Match<sup>TM</sup> is dedicated to tackling talent and job matching challenges from the ground up through collaboration with Jobseekers, Candidates, Employers, Colleges, and JobReps (including Federal and State Government, Coaches, Counselors, Resume Writers, Job Scouts, Advisors, and other career professionals).</p>
+
+<!--        <p> Using Curate Match<sup>TM</sup> candidates now have an option to instantly upload the resume, add candidate’s personal preferences and then use the curated matched job information to network and apply to these highly matched companies. There are no guarantees, but highly matched companies significantly increase the chance of finding a suitable job.</p>-->
+        <img src="{{config.assetsImages+'JobJourney.png'}}" alt="" width="100%">
+    </div>
+    <div class="mb-35">
+        <h5 class="section-common-heading">Curate Match Framework:</h5>
+        <p>The Curate Match<sup>TM</sup> Framework incorporates human insights and leverages DeepMatchr <sup>TM</sup> &nbsp;<a [routerLink]="['/bothmatch-solutions']" style="color:#4285F4;">solutions</a> to save time, money, and reduce stress. It offers the first open, on-demand, and identity-protected candidate and employer portal, empowering users and transforming the recruitment landscape.</p>
+
+        <p>The DeepMatchr <sup>TM</sup> system ensures that personal information is not utilized during the job matching process and adheres to additional best practices in artificial intelligence, thereby eliminating the potential for matching bias.</p>
+
+<!--        <p> Curate Match<sup>TM</sup> incorporates Deep <img  class="tm-img" src="assets/images/tm.png"> Match<sup>TM</sup> solutions and human insights to save time, money, and reduce stress. You can now utilize the first open, on-demand and identity- protected talent and job matching portal to empower users and transform recruiting. Curate Match<sup>TM</sup> does not process personal information or deploy machine learning in job matching, thus eliminating the potential for any discrimination or bias.</p>-->
+<!--        <p>Curate Match<sup>TM</sup> is on a mission to help address the talent and job matching challenges from the ground up and collaborate with Candidates, Employers, Colleges and JobReps (States, Resume Writers, Coaches, Counselors, Job Scouts, Advisors and other career professionals).</p>-->
+        <img src="{{config.assetsImages+'JobMatching.png'}}" alt="" class="" width="100%">
+    </div>
+    <h5 class="section-common-heading">Next Steps:</h5>
+    <p>Jobseekers are encouraged to present their best selves by uploading an optimized resume for optimal matches. If additional assistance is required, such as updating the resume or obtaining career advancement support before uploading, find the ideal career professional in your area of expertise through <a [routerLink]="['/login','jobReps']" style="color:#4285F4;">JobReps</a>.</p>
+
+    <p>Watch the <span [routerLink]="['/']" style="color:#4285F4;text-decoration: underline">Instant Match Demo</span> to discover how to save time, money, and reduce stress during your job search journey.</p>
+    <img src="{{config.assetsImages+'FirstSteps.png'}}" alt="" width="100%">
+</section>
+<section>
+    <app-footer-curate-career></app-footer-curate-career>
+    <figure><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>
+</section>
+<div class="button-group">
+    <button type="submit" class="btnblue" [routerLink]="['/']">Previous</button>
+    <button type="submit" class="btnpurple" [routerLink]="['/current-challenges']">Next</button>
+</div>

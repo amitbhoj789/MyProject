@@ -1,0 +1,25 @@
+<app-header-slider></app-header-slider>
+<div class="content-wrap useful-links-block">
+    <h2 class="text-center mb-20 mt-10">Useful Links</h2>
+    <ul class="useful-tabs-lists">
+        <li [ngClass]="{'active': linksTabIndex === 0}" (click)="linksTabChange(0)"><span>About Us</span></li>
+        <li [ngClass]="{'active': linksTabIndex === 1}" (click)="linksTabChange(1)"><span>Help Center</span></li>
+        <li [ngClass]="{'active': linksTabIndex === 2}" (click)="linksTabChange(2)" class="match-tab"><span>Job Matching</span></li>
+        <li [ngClass]="{'active': linksTabIndex === 3}" (click)="linksTabChange(3)"><span>Press Corner</span></li>
+        <li [ngClass]="{'active': linksTabIndex === 4}" (click)="linksTabChange(4)"><span>Policy Privacy</span></li>
+        <li [ngClass]="{'active': linksTabIndex === 5}" (click)="linksTabChange(5)" class="terms-tab"><span>Terms & Conditions</span></li>
+    </ul>
+
+    <app-useful-details
+            [useFulLinks]="this.useFulLinks"
+            [helpCenterBlock]="this.helpCenterBlock"
+            (messageEvent)="receiveMessage($event)"
+            [isFaqVisible]="this.isFaqVisible"
+            (messageEventFaq)="receiveMessageFaq($event)"
+            [isJobseekerVisible]="this.isJobseekerVisible"
+            (messageEventJobSeeker)="receiveMessageJobSeeker($event)"
+            [isCommunityVisible]="this.isCommunityVisible"
+            (messageEventCommunity)="receiveMessageCommunity($event)"
+    ></app-useful-details>
+</div>
+<app-footer-curate-career class="userful-links"></app-footer-curate-career>

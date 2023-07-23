@@ -1,0 +1,205 @@
+<app-header-slider></app-header-slider>
+<!--<div class="candidate-collage">-->
+<!--    <img src="{{config.assetsImages+'people.png'}}" width="100%">-->
+<!--</div>-->
+<h2 class="section-common-heading pt-15 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<div class="steps mt-25">
+    <span>STEP  {{this.currentStep}}/{{this.maxStep}}</span>
+    <h2>Additional Input</h2>
+</div>
+<div class="progressbar">
+    <div class="progress-value width{{this.progress}}"></div>
+</div>
+<div class="form-section">
+    <form [formGroup]="frmDetails" autocomplete="on" class="px-15">
+        <div class="input-group">
+            <label for="txtIndustry">Field/Industry</label>
+
+<!--            <ng-container *ngIf="this.searchType==='free'">-->
+<!--                <ng-select id="txtIndustry" bindLabel="name" bindValue="name" [items]="industryList" notFoundText="No Found!" formControlName="industry" [searchable]="false"></ng-select>-->
+<!--            </ng-container>-->
+
+            <ng-container *ngIf="this.searchType==='freeGovt' || this.searchType==='free'">
+                <ng-select class="industry_list" id="txtIndustry" bindLabel="name" bindValue="key" [items]="industryListGovt" notFoundText="No Found!" formControlName="industry" [searchable]="false" [(ngModel)]="selectedIndustry"></ng-select>
+            </ng-container>
+
+
+            <div *ngIf="getControls['industry']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['industry']['errors']?.['required'] && getControls['industry']['touched']) || isInvalid">
+                    Field / industry is required.
+                </div>
+                <div *ngIf="getControls['industry']['errors']?.['pattern']">
+                    Invalid Field / industry.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtJobCategory">Job Category</label>
+            <ng-container *ngIf="this.searchType==='free' || this.searchType==='freeGovt'" >
+                <ng-select class="read-only" id="txtJobCategory" bindLabel="name" bindValue="key" [items]="hiringpathList" notFoundText="No Found!" formControlName="job_category" [searchable]="false"></ng-select>
+            </ng-container>
+
+<!--            <ng-container *ngIf="this.searchType==='freeGovt'">-->
+<!--                <ng-select id="txtJobCategory" bindLabel="name" bindValue="key" [items]="hiringpathList" notFoundText="No Found!" formControlName="job_category" [searchable]="false"></ng-select>-->
+<!--            </ng-container>-->
+
+            <div *ngIf="getControls['job_category']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['job_category']['errors']?.['required'] && getControls['job_category']['touched']) || isInvalid">
+                    Job Category is required.
+                </div>
+                <div *ngIf="getControls['job_category']['errors']?.['pattern']">
+                    Invalid Job Category.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtRadius">Radius</label>
+            <input readonly type="text" id="txtRadius" name="radius" value="" formControlName="radius">
+            <div *ngIf="getControls['radius']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['radius']['errors']?.['required'] && getControls['radius']['touched']) || isInvalid">
+                    Radius is required.
+                </div>
+                <div *ngIf="getControls['radius']['errors']?.['pattern']">
+                    Radius City-State.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtJobGrade">Job Grade</label>
+            <input readonly type="text" id="txtJobGrade" name="fname" value="" formControlName="job_grade">
+            <div *ngIf="getControls['job_grade']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['job_grade']['errors']?.['required'] && getControls['job_grade']['touched']) || isInvalid">
+                    Job grade is required.
+                </div>
+                <div *ngIf="getControls['job_grade']['errors']?.['pattern']">
+                    Invalid Job grade.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtJobDepartment">Job Department</label>
+            <ng-select id="txtJobDepartment" bindLabel="name" bindValue="name" [items]="deptList" notFoundText="No Found!" formControlName="job_department"  [searchable]="false"></ng-select>
+            <div *ngIf="getControls['job_department']['invalid']">
+                <div *ngIf="(getControls['job_department']['errors']?.['required'] && getControls['job_department']['touched']) || isInvalid" class="alert alert-danger">
+                    Job Department is required.
+                </div>
+                <div *ngIf="getControls['job_department']['errors']?.['pattern']" class="alert alert-danger">
+                    Invalid Job Department.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtJobTitle">Job Title</label>
+            <ng-select id="txtJobTitle" bindLabel="name" bindValue="name" [items]="titleList" notFoundText="No Found!" formControlName="job_title"></ng-select>
+            <div *ngIf="getControls['job_title']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['job_title']['errors']?.['required'] && getControls['job_title']['touched']) || isInvalid">
+                    Job title is required.
+                </div>
+                <div *ngIf="getControls['job_title']['errors']?.['pattern']">
+                    Invalid Job title.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtJobType">Job Type</label>
+            <ng-select id="txtJobType" bindLabel="name" bindValue="name" [items]="typeList" notFoundText="No Found!" formControlName="job_type" [searchable]="false"></ng-select>
+            <div *ngIf="getControls['job_type']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['job_type']['errors']?.['required'] && getControls['job_type']['touched']) || isInvalid">
+                    Job type is required.
+                </div>
+                <div *ngIf="getControls['job_type']['errors']?.['pattern']">
+                    Invalid Job type.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtCityState">City/State</label>
+            <input type="text" id="txtCityState" name="city_state" value="" formControlName="city_state">
+            <div *ngIf="getControls['city_state']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['city_state']['errors']?.['required'] && getControls['city_state']['touched']) || isInvalid">
+                    City-State is required.
+                </div>
+                <div *ngIf="getControls['city_state']['errors']?.['pattern']">
+                    Invalid City-State.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="inputsymbol">Salary Min</label>
+            <div class="inputsymbol">
+                <span>$</span>
+                <ng-container *ngIf="this.searchType==='free' || this.searchType==='freeGovt'">
+                    <input readonly type="text" class="icon-input" id="inputsymbol" name="salary_min" value="" formControlName="salary_min">
+                </ng-container>
+
+<!--                <ng-container *ngIf="this.searchType==='freeGovt'">-->
+<!--                    <input type="text" class="icon-input" id="inputsymbol" name="salary_min" value="" formControlName="salary_min">-->
+<!--                </ng-container>-->
+
+
+            </div>
+            <div *ngIf="getControls['salary_min']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['salary_min']['errors']?.['required'] && getControls['salary_min']['touched']) || isInvalid">
+                    Salary Min is required.
+                </div>
+                <div *ngIf="getControls['salary_min']['errors']?.['pattern']">
+                    Invalid Salary Min.
+                </div>
+            </div>
+            <!-- <input type="range" id="volume" name="volume" min="0" max="11"> -->
+        </div>
+        <div class="input-group">
+            <label for="inputsymbol">Salary Max</label>
+            <div class="inputsymbol">
+                <span>$</span>
+                <input readonly type="text" class="icon-input" id="inputsymbol" name="salary_max" value="" formControlName="salary_max">
+            </div>
+            <div *ngIf="getControls['salary_max']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['salary_max']['errors']?.['required'] && getControls['salary_max']['touched']) || isInvalid">
+                    Salary Max is required.
+                </div>
+                <div *ngIf="getControls['salary_max']['errors']?.['pattern']">
+                    Invalid Salary Max.
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="txtCustomTags">Custom Tag</label>
+            <input type="text" id="txtCustomTags" name="fname" value="" formControlName="customTags">
+            <div *ngIf="getControls['customTags']['invalid']" class="alert alert-danger">
+                <div *ngIf="(getControls['customTags']['errors']?.['required'] && getControls['customTags']['touched']) || isInvalid">
+                    Custom Tags is required.
+                </div>
+                <div *ngIf="getControls['customTags']['errors']?.['pattern']">
+                    Invalid Custom Tags.
+                </div>
+            </div>
+<!--            <div class="select-to">-->
+<!--                <span>Abs <img src="images/cancel.svg" alt=""></span>-->
+<!--                <span>Test <img src="images/cancel.svg" alt=""></span>-->
+<!--            </div>-->
+        </div>
+
+        <div class="captcha-btn" #target>
+            <ng-container *ngIf="config.isShowCaptcha">
+                <div class="form-recaptcha-size-new">
+                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                    <div *ngIf="getControls['recaptcha'].invalid">
+                        <div *ngIf="(getControls['recaptcha']['errors']?.['required'] && getControls['recaptcha']['touched']) || isInvalid" class="alert alert-danger">
+                            Captcha is required.
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+
+    </form>
+    <div class="button-group">
+        <button type="button" class="btnblue" [routerLink]="['/review-edit']">Previous</button>
+        <button type="button" class="btnpurple" (click)="submitForm(target)">
+            <ng-container *ngIf="isStep3Loading"><div class="loading-bar"><span class="loader loader-quart"></span><span class="loading-text">Please Wait...</span></div></ng-container> <ng-container *ngIf="!isStep3Loading">View Matches</ng-container>
+        </button>
+    </div>
+</div>

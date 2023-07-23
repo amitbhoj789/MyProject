@@ -1,0 +1,117 @@
+.button-group button.btnblue, .button-group button.btnpurple {
+  cursor: pointer;
+}
+
+.pure-material-progress-linear {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 0.25em;
+  color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  background-color: rgba(var(--pure-material-primary-rgb, 33, 150, 243), 0.12);
+  font-size: 16px;
+  width: 100%;
+}
+
+.pure-material-progress-linear::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+/* Determinate */
+.pure-material-progress-linear::-webkit-progress-value {
+  background-color: currentColor;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.pure-material-progress-linear::-moz-progress-bar {
+  background-color: currentColor;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.pure-material-progress-linear::-ms-fill {
+  border: none;
+  background-color: currentColor;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+/* Indeterminate */
+.pure-material-progress-linear:indeterminate {
+  background-size: 200% 100%;
+  background-image: linear-gradient(to right, transparent 50%, currentColor 50%, currentColor 60%, transparent 60%, transparent 71.5%, currentColor 71.5%, currentColor 84%, transparent 84%);
+  animation: pure-material-progress-linear 2s infinite linear;
+}
+
+.pure-material-progress-linear:indeterminate::-moz-progress-bar {
+  background-color: transparent;
+}
+
+.pure-material-progress-linear:indeterminate::-ms-fill {
+  animation-name: none;
+}
+
+@keyframes pure-material-progress-linear {
+  0% {
+    background-size: 200% 100%;
+    background-position: left -31.25% top 0%;
+  }
+  50% {
+    background-size: 800% 100%;
+    background-position: left -49% top 0%;
+  }
+  100% {
+    background-size: 400% 100%;
+    background-position: left -102% top 0%;
+  }
+}
+.line-loader span {
+  text-align: center;
+  padding: 4px 10px;
+  font-size: 20px;
+  display: table;
+  top: -19px;
+  position: relative;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.progressbar .progress-value.width80 {
+  width: 80%;
+}
+
+.progressbar .progress-value.width83 {
+  width: 83%;
+}
+
+.visitedLinkColor {
+  color: blue;
+}
+
+.styled-checkbox:checked:before {
+  background: #1d69e7;
+}
+
+.selectcheckbox img {
+  top: -1px;
+  position: relative;
+  width: 22px;
+}
+@media screen and (max-width: 374px) {
+  .selectcheckbox img {
+    width: 24px;
+  }
+}
+
+:host .select-action .selectcheckbox {
+  margin-bottom: 20px;
+}
+:host .profile-matches-list li {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+:host .profile-matches-list li:first-child {
+  margin-top: 0;
+}/*# sourceMappingURL=curated-report.component.css.map */

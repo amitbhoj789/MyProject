@@ -1,0 +1,17 @@
+<app-header-slider></app-header-slider>
+<h2 class="section-common-heading pt-20 text-center">{{this.federalJobHeading}}</h2>
+<h3 class="section-sub-common-heading text-center">{{this.federalJobSubHeading}}</h3>
+<div class="start-here text-center mt-30 mb-15">START HERE</div>
+<div class="tab-content mb-0 px-10 pt-0 pb-20">
+    <div class="jobseeker-content"  *ngIf="jobSeekerTab">
+        <app-job-seeker-tab></app-job-seeker-tab>
+    </div>
+</div>
+<div class="current-match-banner mb-20">
+    <img alt="" src="{{config.assetsImages+'Ikigai-v5.png'}}" width="100%">
+</div>
+<app-footer-curate-career></app-footer-curate-career>
+<figure style="margin-bottom:-4px;"><img alt="" src="{{config.assetsImages+'Footer-Capture.png'}}" width="100%"></figure>
+<div class="button-group" *ngIf="this.matchType === 'fromJobSeeker'">
+    <button type="submit" class="btnblue" [routerLink]="['/useful-links/help-center']" [queryParams]="{ isJobseekerVisible: true }"> Previous </button>
+</div>
